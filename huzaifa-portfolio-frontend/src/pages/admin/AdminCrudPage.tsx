@@ -17,8 +17,10 @@ export default function AdminCrudPage() {
   const [education, setEducation] = useState<any[]>([]);
   const [certifications, setCertifications] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
+    setError('');
     if (section === 'messages' || section === 'contact') loadMessages();
     if (section === 'projects') loadProjects();
     if (section === 'skills') loadSkills();
@@ -26,19 +28,30 @@ export default function AdminCrudPage() {
     if (section === 'education') loadEducation();
   }, [section]);
 
+  function handleError(err: unknown) {
+    console.error(err);
+    setError('Action failed. Please login again or check backend connection.');
+  }
+
   async function loadMessages() {
     setLoading(true);
     try {
       const res = await contactApi.list();
       setMessages(res.data);
+    } catch (err) {
+      handleError(err);
     } finally {
       setLoading(false);
     }
   }
 
   async function markAsRead(id: string) {
-    await contactApi.markRead(id);
-    await loadMessages();
+    try {
+      await contactApi.markRead(id);
+      await loadMessages();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function loadProjects() {
@@ -46,6 +59,8 @@ export default function AdminCrudPage() {
     try {
       const res = await projectApi.list();
       setProjects(res.data);
+    } catch (err) {
+      handleError(err);
     } finally {
       setLoading(false);
     }
@@ -53,33 +68,43 @@ export default function AdminCrudPage() {
 
   async function createProject(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const fd = new FormData(formElement);
 
-    await projectApi.create({
-      title: String(fd.get('title')),
-      slug: String(fd.get('slug')),
-      category: String(fd.get('category')),
-      description: String(fd.get('description')),
-      technologies: String(fd.get('technologies'))
-        .split(',')
-        .map((x) => x.trim())
-        .filter(Boolean),
-      liveUrl: String(fd.get('liveUrl') || ''),
-      githubUrl: String(fd.get('githubUrl') || ''),
-      imageUrl: String(fd.get('imageUrl') || ''),
-      order: Number(fd.get('order') || 0),
-      isVisible: true,
-      isFeatured: fd.get('isFeatured') === 'on',
-    });
+    try {
+      await projectApi.create({
+        title: String(fd.get('title')),
+        slug: String(fd.get('slug')),
+        category: String(fd.get('category')),
+        description: String(fd.get('description')),
+        technologies: String(fd.get('technologies'))
+          .split(',')
+          .map((x) => x.trim())
+          .filter(Boolean),
+        liveUrl: String(fd.get('liveUrl') || ''),
+        githubUrl: String(fd.get('githubUrl') || ''),
+        imageUrl: String(fd.get('imageUrl') || ''),
+        order: Number(fd.get('order') || 0),
+        isVisible: true,
+        isFeatured: fd.get('isFeatured') === 'on',
+      });
 
-    e.currentTarget.reset();
-    await loadProjects();
+      formElement.reset();
+      await loadProjects();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function deleteProject(id: string) {
     if (!confirm('Delete this project?')) return;
-    await projectApi.remove(id);
-    await loadProjects();
+
+    try {
+      await projectApi.remove(id);
+      await loadProjects();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function loadSkills() {
@@ -87,6 +112,8 @@ export default function AdminCrudPage() {
     try {
       const res = await skillApi.getAll();
       setSkills(res.data);
+    } catch (err) {
+      handleError(err);
     } finally {
       setLoading(false);
     }
@@ -94,25 +121,35 @@ export default function AdminCrudPage() {
 
   async function createSkill(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const fd = new FormData(formElement);
 
-    await skillApi.create({
-      name: String(fd.get('name')),
-      category: String(fd.get('category')),
-      proficiency: Number(fd.get('proficiency') || 70),
-      yearsOfExperience: Number(fd.get('yearsOfExperience') || 1),
-      order: Number(fd.get('order') || 0),
-      isVisible: true,
-    });
+    try {
+      await skillApi.create({
+        name: String(fd.get('name')),
+        category: String(fd.get('category')),
+        proficiency: Number(fd.get('proficiency') || 70),
+        yearsOfExperience: Number(fd.get('yearsOfExperience') || 1),
+        order: Number(fd.get('order') || 0),
+        isVisible: true,
+      });
 
-    e.currentTarget.reset();
-    await loadSkills();
+      formElement.reset();
+      await loadSkills();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function deleteSkill(id: string) {
     if (!confirm('Delete this skill?')) return;
-    await skillApi.delete(id);
-    await loadSkills();
+
+    try {
+      await skillApi.delete(id);
+      await loadSkills();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function loadExperiences() {
@@ -120,6 +157,8 @@ export default function AdminCrudPage() {
     try {
       const res = await experienceApi.getAll();
       setExperiences(res.data);
+    } catch (err) {
+      handleError(err);
     } finally {
       setLoading(false);
     }
@@ -127,38 +166,48 @@ export default function AdminCrudPage() {
 
   async function createExperience(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const fd = new FormData(formElement);
 
-    await experienceApi.create({
-      company: String(fd.get('company')),
-      role: String(fd.get('role')),
-      location: String(fd.get('location')),
-      employmentType: String(fd.get('employmentType') || 'Freelance'),
-      startDate: String(fd.get('startDate')),
-      endDate: String(fd.get('endDate') || ''),
-      isCurrent: fd.get('isCurrent') === 'on',
-      description: String(fd.get('description')),
-      technologies: String(fd.get('technologies') || '')
-        .split(',')
-        .map((x) => x.trim())
-        .filter(Boolean),
-      achievements: String(fd.get('achievements') || '')
-        .split(',')
-        .map((x) => x.trim())
-        .filter(Boolean),
-      order: Number(fd.get('order') || 0),
-      isVisible: true,
-      isFeatured: fd.get('isFeatured') === 'on',
-    });
+    try {
+      await experienceApi.create({
+        company: String(fd.get('company')),
+        role: String(fd.get('role')),
+        location: String(fd.get('location')),
+        employmentType: String(fd.get('employmentType') || 'Freelance'),
+        startDate: String(fd.get('startDate')),
+        endDate: String(fd.get('endDate') || ''),
+        isCurrent: fd.get('isCurrent') === 'on',
+        description: String(fd.get('description')),
+        technologies: String(fd.get('technologies') || '')
+          .split(',')
+          .map((x) => x.trim())
+          .filter(Boolean),
+        achievements: String(fd.get('achievements') || '')
+          .split(',')
+          .map((x) => x.trim())
+          .filter(Boolean),
+        order: Number(fd.get('order') || 0),
+        isVisible: true,
+        isFeatured: fd.get('isFeatured') === 'on',
+      });
 
-    e.currentTarget.reset();
-    await loadExperiences();
+      formElement.reset();
+      await loadExperiences();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function deleteExperience(id: string) {
     if (!confirm('Delete this experience?')) return;
-    await experienceApi.delete(id);
-    await loadExperiences();
+
+    try {
+      await experienceApi.delete(id);
+      await loadExperiences();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function loadEducation() {
@@ -167,6 +216,8 @@ export default function AdminCrudPage() {
       const res = await educationApi.getAll();
       setEducation(res.data.education);
       setCertifications(res.data.certifications);
+    } catch (err) {
+      handleError(err);
     } finally {
       setLoading(false);
     }
@@ -174,49 +225,71 @@ export default function AdminCrudPage() {
 
   async function createEducation(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const fd = new FormData(formElement);
 
-    await educationApi.createEducation({
-      degree: String(fd.get('degree')),
-      institution: String(fd.get('institution')),
-      field: String(fd.get('field')),
-      startDate: String(fd.get('startDate') || ''),
-      endDate: String(fd.get('endDate') || ''),
-      order: Number(fd.get('order') || 0),
-      isVisible: true,
-    });
+    try {
+      await educationApi.createEducation({
+        degree: String(fd.get('degree')),
+        institution: String(fd.get('institution')),
+        field: String(fd.get('field')),
+        startDate: String(fd.get('startDate') || ''),
+        endDate: String(fd.get('endDate') || ''),
+        order: Number(fd.get('order') || 0),
+        isVisible: true,
+      });
 
-    e.currentTarget.reset();
-    await loadEducation();
+      formElement.reset();
+      await loadEducation();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function createCertification(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const fd = new FormData(formElement);
 
-    await educationApi.createCertification({
-      name: String(fd.get('name')),
-      issuer: String(fd.get('issuer')),
-      issueDate: String(fd.get('issueDate')),
-      order: Number(fd.get('order') || 0),
-      isVisible: true,
-    });
+    try {
+      await educationApi.createCertification({
+        name: String(fd.get('name')),
+        issuer: String(fd.get('issuer')),
+        issueDate: String(fd.get('issueDate')),
+        order: Number(fd.get('order') || 0),
+        isVisible: true,
+      });
 
-    e.currentTarget.reset();
-    await loadEducation();
+      formElement.reset();
+      await loadEducation();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function deleteEducation(id: string) {
     if (!confirm('Delete this education item?')) return;
-    await educationApi.deleteEducation(id);
-    await loadEducation();
+
+    try {
+      await educationApi.deleteEducation(id);
+      await loadEducation();
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function deleteCertification(id: string) {
     if (!confirm('Delete this certification?')) return;
-    await educationApi.deleteCertification(id);
-    await loadEducation();
+
+    try {
+      await educationApi.deleteCertification(id);
+      await loadEducation();
+    } catch (err) {
+      handleError(err);
+    }
   }
+
+  const ErrorMessage = () => error ? <p className="error">{error}</p> : null;
 
   if (section === 'messages' || section === 'contact') {
     return (
@@ -229,6 +302,8 @@ export default function AdminCrudPage() {
             </div>
             <button className="btn btn-primary" onClick={loadMessages}>Refresh</button>
           </div>
+
+          <ErrorMessage />
 
           {loading ? <p>Loading messages...</p> : (
             <div className="admin-table">
@@ -268,6 +343,8 @@ export default function AdminCrudPage() {
             </div>
             <button className="btn btn-primary" onClick={loadProjects}>Refresh</button>
           </div>
+
+          <ErrorMessage />
 
           <form className="admin-form" onSubmit={createProject}>
             <input name="title" placeholder="Project title" required />
@@ -313,6 +390,8 @@ export default function AdminCrudPage() {
             </div>
             <button className="btn btn-primary" onClick={loadSkills}>Refresh</button>
           </div>
+
+          <ErrorMessage />
 
           <form className="admin-form" onSubmit={createSkill}>
             <input name="name" placeholder="Skill name" required />
@@ -361,6 +440,8 @@ export default function AdminCrudPage() {
             <button className="btn btn-primary" onClick={loadExperiences}>Refresh</button>
           </div>
 
+          <ErrorMessage />
+
           <form className="admin-form" onSubmit={createExperience}>
             <input name="company" placeholder="Company" required />
             <input name="role" placeholder="Role" required />
@@ -407,6 +488,8 @@ export default function AdminCrudPage() {
             </div>
             <button className="btn btn-primary" onClick={loadEducation}>Refresh</button>
           </div>
+
+          <ErrorMessage />
 
           <form className="admin-form" onSubmit={createEducation}>
             <h3>Academic Education</h3>

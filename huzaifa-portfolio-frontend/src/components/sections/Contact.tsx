@@ -1,11 +1,5 @@
 import { FormEvent, useState } from 'react';
-import {
-  Mail,
-  MessageCircle,
-  Palette,
-  Send,
-  Code2,
-} from 'lucide-react';
+import { Mail, MessageCircle, Palette, Send, Code2 } from 'lucide-react';
 import { contactApi } from '@/services/api/contactApi';
 import { useLanguage } from '@/context/LanguageContext';
 import { socialLinks } from '@/data/socialLinks';
@@ -29,7 +23,9 @@ export default function Contact() {
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const form = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const form = new FormData(formElement);
+
     setStatus('sending');
 
     try {
@@ -43,7 +39,7 @@ export default function Contact() {
       });
 
       setStatus('success');
-      e.currentTarget.reset();
+      formElement.reset();
     } catch {
       setStatus('error');
     }
@@ -83,14 +79,27 @@ export default function Contact() {
         <form className="contact-form contact-panel" onSubmit={submit}>
           <div className="form-row">
             <input name="name" placeholder={language === 'ar' ? 'الاسم' : 'Name'} required />
-            <input name="email" type="email" placeholder={language === 'ar' ? 'البريد الإلكتروني' : 'Email'} required />
+            <input
+              name="email"
+              type="email"
+              placeholder={language === 'ar' ? 'البريد الإلكتروني' : 'Email'}
+              required
+            />
           </div>
 
-          <input name="phone" placeholder={language === 'ar' ? 'الهاتف (اختياري)' : 'Phone (optional)'} />
+          <input
+            name="phone"
+            placeholder={language === 'ar' ? 'الهاتف (اختياري)' : 'Phone (optional)'}
+          />
           <input name="subject" placeholder={language === 'ar' ? 'الموضوع' : 'Subject'} required />
-          <textarea name="message" placeholder={language === 'ar' ? 'اكتب رسالتك' : 'Message'} rows={5} required />
+          <textarea
+            name="message"
+            placeholder={language === 'ar' ? 'اكتب رسالتك' : 'Message'}
+            rows={5}
+            required
+          />
 
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" disabled={status === 'sending'}>
             <Send size={17} />
             {status === 'sending'
               ? language === 'ar'
