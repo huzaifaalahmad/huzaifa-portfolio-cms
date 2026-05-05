@@ -1,0 +1,3 @@
+import{Response,NextFunction}from'express';import{AuthRequest}from'@/types/api.types';import{verifyAccessToken}from'@/config/jwt';import{UnauthorizedError,ForbiddenError}from'@/utils/errorClasses';
+export const authenticate=async(r:AuthRequest,res:Response,n:NextFunction)=>{try{const h=r.headers.authorization;if(!h||!h.startsWith('Bearer '))throw new UnauthorizedError();const t=h.substring(7);const p=verifyAccessToken(t);r.user={id:p.userId,email:p.email,role:p.role};n();}catch(e:any){n(e.name==='TokenExpiredError'?new UnauthorizedError('Token expired'):e);}};
+export const authorize=(...roles:string[])=>(r:AuthRequest,res:Response,n:NextFunction)=>{if(!r.user||!roles.includes(r.user.role))return n(new ForbiddenError());n();};

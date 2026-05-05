@@ -1,0 +1,196 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  VIEWER
+}
+
+enum LogSeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String    @map("password_hash")
+  name         String
+  role         Role      @default(ADMIN)
+  isActive     Boolean   @default(true) @map("is_active")
+  lastLoginAt  DateTime? @map("last_login_at")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  adminLogs     AdminLog[]
+  refreshTokens RefreshToken[]
+  preferences   UserPreference?
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  token     String   @unique
+  expiresAt DateTime @map("expires_at")
+  isRevoked Boolean  @default(false) @map("is_revoked")
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+model AdminLog {
+  id         String      @id @default(uuid())
+  userId     String      @map("user_id")
+  action     String
+  entityType String      @map("entity_type")
+  entityId   String?     @map("entity_id")
+  severity   LogSeverity @default(INFO)
+  changes    Json?
+  ipAddress  String?     @map("ip_address")
+  userAgent  String?     @map("user_agent")
+  createdAt  DateTime    @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("admin_logs")
+}
+
+model ContactMessage {
+  id                String    @id @default(uuid())
+  name              String
+  email             String
+  phone             String?
+  subject           String
+  message           String    @db.Text
+  preferredLanguage String    @default("en") @map("preferred_language")
+  isRead            Boolean   @default(false) @map("is_read")
+  isReplied         Boolean   @default(false) @map("is_replied")
+  isSpam            Boolean   @default(false) @map("is_spam")
+  spamScore         Float     @default(0.0) @map("spam_score")
+  readAt            DateTime? @map("read_at")
+  repliedAt         DateTime? @map("replied_at")
+  ipAddress         String?   @map("ip_address")
+  userAgent         String?   @map("user_agent")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  @@map("contact_messages")
+}
+
+model UserPreference {
+  id                String   @id @default(uuid())
+  userId            String   @unique @map("user_id")
+  preferredLanguage String   @default("en") @map("preferred_language")
+  preferredTheme    String   @default("light") @map("preferred_theme")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+} 
+model Project {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  category    String
+  description String   @db.Text
+  technologies Json?
+  liveUrl     String?  @map("live_url")
+  githubUrl   String?  @map("github_url")
+  imageUrl    String?  @map("image_url")
+  isFeatured  Boolean  @default(false) @map("is_featured")
+  isVisible   Boolean  @default(true) @map("is_visible")
+  order       Int      @default(0)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("projects")
+}
+model Skill {
+  id                String   @id @default(uuid())
+  name              String
+  category          String
+  proficiency       Int      @default(70)
+  yearsOfExperience Float    @default(1) @map("years_of_experience")
+  isVisible         Boolean  @default(true) @map("is_visible")
+  order             Int      @default(0)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("skills")
+}
+model Experience {
+  id             String   @id @default(uuid())
+  company        String
+  role           String
+  location       String
+  employmentType String   @default("Freelance") @map("employment_type")
+  startDate      String   @map("start_date")
+  endDate        String?  @map("end_date")
+  isCurrent      Boolean  @default(false) @map("is_current")
+  description    String   @db.Text
+  achievements   Json?
+  technologies   Json?
+  isVisible      Boolean  @default(true) @map("is_visible")
+  isFeatured     Boolean  @default(false) @map("is_featured")
+  order          Int      @default(0)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("experiences")
+}
+model Education {
+  id          String   @id @default(uuid())
+  degree      String
+  institution String
+  field       String
+  startDate   String?  @map("start_date")
+  endDate     String?  @map("end_date")
+  isVisible   Boolean  @default(true) @map("is_visible")
+  order       Int      @default(0)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("education")
+}
+
+model Certification {
+  id        String   @id @default(uuid())
+  name      String
+  issuer    String
+  issueDate String   @map("issue_date")
+  isVisible Boolean  @default(true) @map("is_visible")
+  order     Int      @default(0)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  @@map("certifications")
+}

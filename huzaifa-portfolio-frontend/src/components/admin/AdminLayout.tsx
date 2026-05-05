@@ -1,0 +1,3 @@
+import { Link, useNavigate } from 'react-router-dom';
+const sections=['dashboard','about','stats','services','skills','experience','projects','education','certifications','testimonials','messages','settings'];
+export default function AdminLayout({children}:{children:React.ReactNode}){const nav=useNavigate();function logout(){localStorage.removeItem('access-token');localStorage.removeItem('refresh-token');nav('/admin/login')}return <div className="admin-shell"><aside><h2>Huzaifa Admin</h2>{sections.map(s=><Link key={s} to={s==='dashboard'?'/admin/dashboard':`/admin/${s}`}>{s}</Link>)}<button onClick={logout}>Logout</button></aside><main>{children}</main></div>}

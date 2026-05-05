@@ -1,0 +1,2 @@
+import{Request,Response,NextFunction}from'express';import{AnyZodObject,ZodError}from'zod';import{ValidationError}from'@/utils/errorClasses';
+export const validate=(s:AnyZodObject)=>async(r:Request,res:Response,n:NextFunction)=>{try{await s.parseAsync({body:r.body,query:r.query,params:r.params});n();}catch(e){if(e instanceof ZodError){const d=e.errors.map(err=>({field:err.path.join('.'),message:err.message}));n(new ValidationError('Validation failed',d));}else n(e);}};

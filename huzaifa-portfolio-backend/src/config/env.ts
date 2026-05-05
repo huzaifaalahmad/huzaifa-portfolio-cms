@@ -1,0 +1,4 @@
+import dotenv from'dotenv';import{z}from'zod';
+dotenv.config();
+const s=z.object({NODE_ENV:z.enum(['development','production','test']).default('development'),PORT:z.string().transform(Number).default('5000'),DATABASE_URL:z.string().url(),JWT_SECRET:z.string().min(32),JWT_REFRESH_SECRET:z.string().min(32),JWT_EXPIRES_IN:z.string().default('15m'),JWT_REFRESH_EXPIRES_IN:z.string().default('7d'),CORS_ORIGIN:z.string(),EMAIL_HOST:z.string(),EMAIL_PORT:z.string().transform(Number),EMAIL_USER:z.string().email(),EMAIL_PASS:z.string(),EMAIL_FROM:z.string().email(),RATE_LIMIT_WINDOW_MS:z.string().transform(Number).default('900000'),RATE_LIMIT_MAX_REQUESTS:z.string().transform(Number).default('100'),ADMIN_EMAIL:z.string().email(),ADMIN_PASSWORD:z.string().min(8),CSRF_SECRET:z.string().min(32).optional(),REDIS_ENABLED:z.string().transform(v=>v==='true').default('false')});
+export const env=s.parse(process.env);

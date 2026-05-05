@@ -1,0 +1,5 @@
+import{ContactRepository}from'@/repositories/contact.repository';import{SpamService}from'./spam.service';import{CreateContactMessageDto}from'@/types/dto/contact.dto';import{BadRequestError}from'@/utils/errorClasses';
+export class ContactService{private repo=new ContactRepository();private spamService=new SpamService();
+async createMessage(d:CreateContactMessageDto,ip?:string,ua?:string){const ss=this.spamService.calculateSpamScore(d.message,d.email);if(ss>0.8)throw new BadRequestError('Message rejected');return this.repo.create({...d,spamScore:ss,isSpam:this.spamService.isSpam(ss),ipAddress:ip,userAgent:ua});}
+async getAllMessages(o:any){const w:any={deletedAt:null};if(o.isRead!==undefined)w.isRead=o.isRead;const data=await this.repo.model.findMany({where:w,skip:((o.page||1)-1)*(o.limit||10),take:o.limit||10,orderBy:{createdAt:'desc'}});const total=await this.repo.model.count({where:w});return{data,meta:{total,page:o.page||1,limit:o.limit||10}};}
+async markAsRead(id:string){return this.repo.markAsRead(id);}}

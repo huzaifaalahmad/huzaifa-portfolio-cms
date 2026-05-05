@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'Ruqaa Ink';
+  src: url('/assets/fonts/Ruqaa%20-%20Ink%20-%20Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Ruqaa Ink';
+  src: url('/assets/fonts/Ruqaa%20-%20Ink%20-%20Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Talahi';
+  src: url('/assets/fonts/Talahi.otf') format('opentype');
+}

@@ -1,0 +1,4 @@
+import { Experience } from '@/types';
+export const experiences: Experience[] = [
+ {id:'1',company:{en:'Independent Projects & Client Work',ar:'مشاريع مستقلة وعملاء'},role:{en:'Full-Stack Developer & AI Prompt Engineer',ar:'مطور متكامل ومهندس تلقين ذكاء اصطناعي'},location:{en:'Remote / Dubai',ar:'عن بعد / دبي'},employmentType:'Freelance',startDate:'2021',isCurrent:true,description:{en:'Designed and built portfolio systems, business websites, prompt workflows, and automation prototypes.',ar:'صممت وبنيت أنظمة بورتفوليو ومواقع أعمال وسير عمل تلقينات ونماذج أتمتة.'},achievements:[{en:'Delivered bilingual web experiences',ar:'تنفيذ تجارب ويب ثنائية اللغة'},{en:'Built API-ready admin architectures',ar:'بناء بنى إدارة جاهزة للـ API'},{en:'Created AI-assisted creative workflows',ar:'إنشاء سير عمل إبداعي مدعوم بالذكاء الاصطناعي'}],technologies:['React','TypeScript','Node.js','AI Tools','Figma'],isVisible:true,isFeatured:true,order:1}
+];
