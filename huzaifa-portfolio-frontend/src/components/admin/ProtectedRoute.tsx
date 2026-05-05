@@ -1,21 +1,35 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '@/context/AuthContext';
+import { authApi } from '@/services/api/authApi';
 
-interface ProtectedRouteProps {
-  children: ReactNode;
-}
+export default function ProtectedRoute({ children }: { children: ReactNode }) {
+  const [allowed, setAllowed] = useState<boolean | null>(null);
 
-export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { isAuthenticated, isLoading } = useAuth();
+  useEffect(() => {
+    async function checkAuth() {
+      const token = localStorage.getItem('access-token');
 
-  if (isLoading) {
-    return <div className="page-loader">Loading...</div>;
+      if (!token) {
+        setAllowed(false);
+        return;
+      }
+
+      try {
+        await authApi.me();
+        setAllowed(true);
+      } catch {
+        localStorage.removeItem('access-token');
+        localStorage.removeItem('refresh-token');
+        setAllowed(false);
+      }
+    }
+
+    checkAuth();
+  }, []);
+
+  if (allowed === null) {
+    return <p style={{ padding: 24 }}>Checking access...</p>;
   }
 
-  if (!isAuthenticated) {
-    return <Navigate to="/admin/login" replace />;
-  }
-
-  return <>{children}</>;
+  return allowed ? <>{children}</> : <Navigate to="/admin/login" replace />;
 }
