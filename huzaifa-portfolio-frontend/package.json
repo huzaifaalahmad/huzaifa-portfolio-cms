@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "typecheck": "tsc -b",
-    "preview": "vite preview --port 3000",
-    "lint": "eslint ."
-  },
+  "dev": "vite",
+  "build": "node ./node_modules/vite/bin/vite.js build",
+  "typecheck": "node ./node_modules/typescript/bin/tsc -b",
+  "preview": "vite preview --port 3000",
+  "lint": "eslint ."
+},
   "dependencies": {
     "@vitejs/plugin-react": "latest",
     "axios": "latest",
