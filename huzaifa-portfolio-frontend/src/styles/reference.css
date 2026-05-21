@@ -888,8 +888,13 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.85rem;
-  align-items: center;
+  align-items: start;
   padding: 1rem;
+}
+
+.cert-body {
+  display: grid;
+  gap: 0.45rem;
 }
 
 .cert-it strong,
@@ -899,6 +904,22 @@
 
 .cert-it span {
   color: var(--ref-muted);
+}
+
+.cert-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  justify-self: start;
+  margin-top: 0.2rem;
+  color: var(--ref-gold);
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.cert-link:hover {
+  color: var(--ref-text);
 }
 
 .test-grid {

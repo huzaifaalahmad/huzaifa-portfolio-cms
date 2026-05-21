@@ -284,6 +284,7 @@ export default function AdminCrudPage() {
       name: asString(fd.get('name')),
       issuer: asString(fd.get('issuer')),
       issueDate: asString(fd.get('issueDate')),
+      credentialUrl: asString(fd.get('credentialUrl')),
       order: Number(fd.get('order') || 0),
       isVisible: fd.get('isVisible') === 'on',
     };
@@ -465,6 +466,7 @@ export default function AdminCrudPage() {
             <input name="name" placeholder="Certification name" defaultValue={certItem?.name || ''} required />
             <input name="issuer" placeholder="Issuer" defaultValue={certItem?.issuer || ''} required />
             <input name="issueDate" placeholder="Issue date" defaultValue={certItem?.issueDate || ''} required />
+            <input name="credentialUrl" placeholder="/assets/certificates/certificate.pdf or https://..." defaultValue={certItem?.credentialUrl || ''} />
             <input name="order" type="number" placeholder="Order" defaultValue={certItem?.order || 0} />
             <label><input name="isVisible" type="checkbox" defaultChecked={certItem?.isVisible ?? true} /> Visible</label>
             <FormActions editing={Boolean(certItem)} onCancel={() => setEditing(null)} />

@@ -85,6 +85,7 @@ type CertificationItem = {
   name: LocalizedValue;
   issuer: LocalizedValue;
   issueDate: string;
+  credentialUrl?: string;
 };
 
 type TestimonialItem = {
@@ -166,6 +167,7 @@ const ui = {
     loader: 'Loading portfolio',
     scroll: 'Scroll',
     noProjects: 'No projects are published yet.',
+    viewCredential: 'View credential',
   },
   ar: {
     brand: 'حذيفة',
@@ -232,6 +234,7 @@ const ui = {
     loader: 'جاري تحميل البورتفوليو',
     scroll: 'مرر',
     noProjects: 'لا توجد أعمال منشورة بعد.',
+    viewCredential: 'عرض الشهادة',
   },
 } as const;
 
@@ -427,6 +430,7 @@ function normalizeCertification(item: any): CertificationItem {
     name: item.name || '',
     issuer: item.issuer || '',
     issueDate: String(item.issueDate || ''),
+    credentialUrl: item.credentialUrl ? String(item.credentialUrl) : undefined,
   };
 }
 
@@ -1060,11 +1064,23 @@ export default function ReferencePortfolio() {
               <span className="cert-ico">
                 <Award size={18} />
               </span>
-              <div>
+              <div className="cert-body">
                 <strong>{text(item.name, '', language)}</strong>
                 <span>
                   {text(item.issuer, '', language)} / {item.issueDate}
                 </span>
+                {item.credentialUrl ? (
+                  <a
+                    className="cert-link"
+                    href={item.credentialUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${c.viewCredential}: ${text(item.name, '', language)}`}
+                  >
+                    {c.viewCredential}
+                    <ArrowUpRight size={15} />
+                  </a>
+                ) : null}
               </div>
             </article>
           ))}

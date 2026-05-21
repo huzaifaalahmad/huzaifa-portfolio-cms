@@ -181,12 +181,13 @@ model Education {
 }
 
 model Certification {
-  id        String   @id @default(uuid())
-  name      String
-  issuer    String
-  issueDate String   @map("issue_date")
-  isVisible Boolean  @default(true) @map("is_visible")
-  order     Int      @default(0)
+  id            String   @id @default(uuid())
+  name          String
+  issuer        String
+  issueDate     String   @map("issue_date")
+  credentialUrl String?  @map("credential_url")
+  isVisible     Boolean  @default(true) @map("is_visible")
+  order         Int      @default(0)
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
