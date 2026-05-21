@@ -22,6 +22,16 @@ export class EducationController {
     sendSuccess(res, data, 'Certification created', 201);
   });
 
+  updateEducation = asyncHandler(async (req: AuthRequest, res: Response) => {
+    const data = await this.service.updateEducation(req.params.id, req.body);
+    sendSuccess(res, data, 'Education updated');
+  });
+
+  updateCertification = asyncHandler(async (req: AuthRequest, res: Response) => {
+    const data = await this.service.updateCertification(req.params.id, req.body);
+    sendSuccess(res, data, 'Certification updated');
+  });
+
   deleteEducation = asyncHandler(async (req: AuthRequest, res: Response) => {
     await this.service.deleteEducation(req.params.id);
     sendSuccess(res, null, 'Education deleted');

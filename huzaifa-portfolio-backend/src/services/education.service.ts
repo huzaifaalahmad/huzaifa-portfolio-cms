@@ -22,6 +22,14 @@ export class EducationService {
     return this.certificationRepo.create(data);
   }
 
+  async updateEducation(id: string, data: any) {
+    return this.educationRepo.update(id, data);
+  }
+
+  async updateCertification(id: string, data: any) {
+    return this.certificationRepo.update(id, data);
+  }
+
   async deleteEducation(id: string) {
     return this.educationRepo.softDelete(id);
   }

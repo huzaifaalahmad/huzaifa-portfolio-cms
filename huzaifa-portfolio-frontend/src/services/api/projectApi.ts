@@ -23,6 +23,23 @@ export const projectApi = {
     return res.data;
   },
 
+  async update(id: string, data: Partial<{
+    title: string;
+    slug: string;
+    category: string;
+    description: string;
+    technologies: string[];
+    liveUrl?: string;
+    githubUrl?: string;
+    imageUrl?: string;
+    isFeatured?: boolean;
+    isVisible?: boolean;
+    order?: number;
+  }>) {
+    const res = await apiClient.patch(`/projects/${id}`, data);
+    return res.data;
+  },
+
   async remove(id: string) {
     const res = await apiClient.delete(`/projects/${id}`);
     return res.data;

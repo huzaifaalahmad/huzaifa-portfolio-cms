@@ -22,6 +22,10 @@ export class ProjectService {
     return this.repo.create(data);
   }
 
+  async update(id: string, data: any) {
+    return this.repo.update(id, data);
+  }
+
   async delete(id: string) {
     return this.repo.softDelete(id);
   }

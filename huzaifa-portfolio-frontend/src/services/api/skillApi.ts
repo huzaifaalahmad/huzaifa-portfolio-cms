@@ -11,6 +11,11 @@ export const skillApi = {
     return res.data;
   },
 
+  async update(id: string, data: any) {
+    const res = await apiClient.patch(`/skills/${id}`, data);
+    return res.data;
+  },
+
   async delete(id: string) {
     const res = await apiClient.delete(`/skills/${id}`);
     return res.data;

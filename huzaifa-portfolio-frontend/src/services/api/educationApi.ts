@@ -16,6 +16,16 @@ export const educationApi = {
     return res.data;
   },
 
+  async updateEducation(id: string, data: any) {
+    const res = await apiClient.patch(`/education/${id}`, data);
+    return res.data;
+  },
+
+  async updateCertification(id: string, data: any) {
+    const res = await apiClient.patch(`/education/certifications/${id}`, data);
+    return res.data;
+  },
+
   async deleteEducation(id: string) {
     const res = await apiClient.delete(`/education/${id}`);
     return res.data;

@@ -17,6 +17,11 @@ export class SkillController {
     sendSuccess(res, skill, 'Skill created', 201);
   });
 
+  update = asyncHandler(async (req: AuthRequest, res: Response) => {
+    const skill = await this.service.update(req.params.id, req.body);
+    sendSuccess(res, skill, 'Skill updated');
+  });
+
   delete = asyncHandler(async (req: AuthRequest, res: Response) => {
     await this.service.delete(req.params.id);
     sendSuccess(res, null, 'Skill deleted');

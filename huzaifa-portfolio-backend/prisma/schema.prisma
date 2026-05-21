@@ -194,3 +194,13 @@ model Certification {
 
   @@map("certifications")
 }
+
+model AnalyticsCounter {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     Int      @default(0)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("analytics_counters")
+}

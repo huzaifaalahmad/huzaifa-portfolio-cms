@@ -11,6 +11,11 @@ export const experienceApi = {
     return res.data;
   },
 
+  async update(id: string, data: any) {
+    const res = await apiClient.patch(`/experience/${id}`, data);
+    return res.data;
+  },
+
   async delete(id: string) {
     const res = await apiClient.delete(`/experience/${id}`);
     return res.data;

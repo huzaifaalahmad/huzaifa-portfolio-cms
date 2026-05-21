@@ -1,16 +1,18 @@
 import { Router } from 'express';
 import { EducationController } from '@/controllers/education.controller';
-import { authenticate, authorize } from '@/middleware/auth.middleware';
+import { authenticate, authorizeOwnerAdmin } from '@/middleware/auth.middleware';
 
 const router = Router();
 const controller = new EducationController();
 
 router.get('/', controller.getAll);
 
-router.post('/', authenticate, authorize('ADMIN'), controller.createEducation);
-router.post('/certifications', authenticate, authorize('ADMIN'), controller.createCertification);
+router.post('/', authenticate, authorizeOwnerAdmin, controller.createEducation);
+router.post('/certifications', authenticate, authorizeOwnerAdmin, controller.createCertification);
+router.patch('/:id', authenticate, authorizeOwnerAdmin, controller.updateEducation);
+router.patch('/certifications/:id', authenticate, authorizeOwnerAdmin, controller.updateCertification);
 
-router.delete('/:id', authenticate, authorize('ADMIN'), controller.deleteEducation);
-router.delete('/certifications/:id', authenticate, authorize('ADMIN'), controller.deleteCertification);
+router.delete('/:id', authenticate, authorizeOwnerAdmin, controller.deleteEducation);
+router.delete('/certifications/:id', authenticate, authorizeOwnerAdmin, controller.deleteCertification);
 
 export default router;

@@ -22,6 +22,11 @@ export class ProjectController {
     sendSuccess(res, project, 'Project created', 201);
   });
 
+  update = asyncHandler(async (req: AuthRequest, res: Response) => {
+    const project = await this.service.update(req.params.id, req.body);
+    sendSuccess(res, project, 'Project updated');
+  });
+
   delete = asyncHandler(async (req: AuthRequest, res: Response) => {
     await this.service.delete(req.params.id);
     sendSuccess(res, null, 'Project deleted');

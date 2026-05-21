@@ -17,6 +17,11 @@ export class ExperienceController {
     sendSuccess(res, experience, 'Experience created', 201);
   });
 
+  update = asyncHandler(async (req: AuthRequest, res: Response) => {
+    const experience = await this.service.update(req.params.id, req.body);
+    sendSuccess(res, experience, 'Experience updated');
+  });
+
   delete = asyncHandler(async (req: AuthRequest, res: Response) => {
     await this.service.delete(req.params.id);
     sendSuccess(res, null, 'Experience deleted');
