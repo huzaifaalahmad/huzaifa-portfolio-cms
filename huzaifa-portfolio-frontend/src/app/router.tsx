@@ -6,6 +6,7 @@ import ContactPage from '@/pages/public/ContactPage';
 import AdminLoginPage from '@/pages/admin/AdminLoginPage';
 import AdminDashboardPage from '@/pages/admin/AdminDashboardPage';
 import AdminCrudPage from '@/pages/admin/AdminCrudPage';
+import AdminSiteContentPage from '@/pages/admin/AdminSiteContentPage';
 import ProtectedRoute from '@/components/admin/ProtectedRoute';
 
 export function AppRouter() {
@@ -17,6 +18,7 @@ export function AppRouter() {
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/admin/login" element={<AdminLoginPage />} />
       <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboardPage /></ProtectedRoute>} />
+      <Route path="/admin/settings" element={<ProtectedRoute><AdminSiteContentPage /></ProtectedRoute>} />
       <Route path="/admin/:section" element={<ProtectedRoute><AdminCrudPage /></ProtectedRoute>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

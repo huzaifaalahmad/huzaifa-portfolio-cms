@@ -34,6 +34,7 @@ import { educationApi } from '@/services/api/educationApi';
 import { experienceApi } from '@/services/api/experienceApi';
 import { metricsApi } from '@/services/api/metricsApi';
 import { projectApi } from '@/services/api/projectApi';
+import { resolveManagedAssetUrl, siteContentApi, SiteContent } from '@/services/api/siteContentApi';
 import { skillApi } from '@/services/api/skillApi';
 
 type Lang = 'en' | 'ar';
@@ -455,6 +456,16 @@ function getStoredLanguage(): Lang {
   }
 }
 
+function mergeCopy<T extends Record<string, any>>(base: T, override?: Record<string, any>): T {
+  if (!override) return base;
+
+  return {
+    ...base,
+    ...override,
+    form: { ...base.form, ...(override.form || {}) },
+  };
+}
+
 export default function ReferencePortfolio() {
   const [language, setLanguage] = useState<Lang>(getStoredLanguage);
   const [navOpen, setNavOpen] = useState(false);
@@ -471,21 +482,34 @@ export default function ReferencePortfolio() {
   const [certifications, setCertifications] = useState<CertificationItem[]>(
     fallbackCertifications.map(normalizeCertification)
   );
+  const [siteContent, setSiteContent] = useState<SiteContent | null>(null);
   const [contactStatus, setContactStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const cursorRingRef = useRef<HTMLDivElement>(null);
 
-  const c = ui[language];
-  const visibleStats = stats.filter((item) => item.isVisible).sort((a, b) => a.order - b.order);
+  const c = mergeCopy(ui[language], siteContent?.copy?.[language]);
+  const hasManagedStats = Boolean(siteContent?.stats?.length);
+  const visibleStats = (hasManagedStats ? siteContent?.stats || [] : stats)
+    .filter((item: any) => item.isVisible)
+    .sort((a: any, b: any) => a.order - b.order);
+  const hasManagedServices = Boolean(siteContent?.services?.length);
+  const hasManagedTestimonials = Boolean(siteContent?.testimonials?.length);
+  const visibleServices = useMemo(() => {
+    const managed = hasManagedServices ? siteContent?.services || [] : services;
+    return managed.filter((service: any) => service.isVisible).sort((a: any, b: any) => a.order - b.order);
+  }, [hasManagedServices, siteContent]);
   const visibleTestimonials = useMemo(
-    () =>
-      fallbackTestimonials
-        .filter((item) => item.isVisible)
-        .sort((a, b) => a.order - b.order)
-        .map(normalizeTestimonial),
-    []
+    () => {
+      const managed = hasManagedTestimonials ? siteContent?.testimonials || [] : fallbackTestimonials;
+      return managed
+        .filter((item: any) => item.isVisible)
+        .sort((a: any, b: any) => a.order - b.order)
+        .map(normalizeTestimonial);
+    },
+    [hasManagedTestimonials, siteContent]
   );
+  const cvUrl = resolveManagedAssetUrl(siteContent?.cv?.url) || profile.cvUrl;
 
   useEffect(() => {
     try {
@@ -496,6 +520,19 @@ export default function ReferencePortfolio() {
       // Ignore storage failures in private browsing.
     }
   }, [language]);
+
+  useEffect(() => {
+    async function loadSiteContent() {
+      try {
+        const res = await siteContentApi.getPublic();
+        if (res.data) setSiteContent(res.data);
+      } catch {
+        setSiteContent(null);
+      }
+    }
+
+    void loadSiteContent();
+  }, []);
 
   useEffect(() => {
     const outTimer = window.setTimeout(() => setLoaderOut(true), 900);
@@ -808,7 +845,7 @@ export default function ReferencePortfolio() {
             <a className="btn-g" href="#work">
               {c.viewWork}
             </a>
-            <a className="btn-o" href={profile.cvUrl} download onClick={recordCvDownload}>
+            <a className="btn-o" href={cvUrl} download onClick={recordCvDownload}>
               <Download size={17} />
               {c.downloadCv}
             </a>
@@ -822,7 +859,7 @@ export default function ReferencePortfolio() {
                   {item.suffix}
                 </span>
                 <span className="hstat-l">
-                  {statLabels[item.id]?.[language] || text(item.label, '', language)}
+                  {hasManagedStats ? text(item.label, '', language) : statLabels[item.id]?.[language] || text(item.label, '', language)}
                 </span>
               </div>
             ))}
@@ -859,7 +896,7 @@ export default function ReferencePortfolio() {
                   {item.suffix}
                 </span>
                 <span className="astat-l">
-                  {statLabels[item.id]?.[language] || text(item.label, '', language)}
+                  {hasManagedStats ? text(item.label, '', language) : statLabels[item.id]?.[language] || text(item.label, '', language)}
                 </span>
               </div>
             ))}
@@ -881,11 +918,9 @@ export default function ReferencePortfolio() {
       <section id="services" className="ref-section rv">
         <SectionTitle eyebrow={c.servicesEyebrow} title={c.servicesTitle} />
         <div className="svc-grid">
-          {services
-            .filter((service) => service.isVisible)
-            .sort((a, b) => a.order - b.order)
-            .map((service, index) => {
-              const serviceText = serviceCopy[service.id]?.[language] || {
+          {visibleServices
+            .map((service: any, index) => {
+              const serviceText = !hasManagedServices && serviceCopy[service.id]?.[language] ? serviceCopy[service.id][language] : {
                 title: text(service.title, '', language),
                 description: text(service.description, '', language),
               };
@@ -1040,7 +1075,7 @@ export default function ReferencePortfolio() {
         <SectionTitle eyebrow={c.testimonialsEyebrow} title={c.testimonialsTitle} />
         <div className="test-grid">
           {visibleTestimonials.map((item) => {
-            const clean = testimonialCopy[item.id]?.[language];
+            const clean = hasManagedTestimonials ? undefined : testimonialCopy[item.id]?.[language];
 
             return (
               <article className="test-card rv" key={item.id}>
