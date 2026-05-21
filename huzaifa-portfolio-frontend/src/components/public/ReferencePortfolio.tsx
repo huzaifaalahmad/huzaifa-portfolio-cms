@@ -123,10 +123,13 @@ const ui = {
     aboutEyebrow: '01 / About',
     aboutTitle: 'Designer Who Speaks Both Design & Code',
     aboutText: [
-      'I create brand systems, web interfaces, and automation-ready digital products. My work combines visual polish with practical engineering so every section of this site can be managed, measured, and improved.',
-      'This portfolio is connected to a real admin dashboard, protected by owner-only access, and backed by counters for visits and CV downloads.',
+      'Dear Hiring Manager,',
+      'I am a Dubai-based Graphic Designer and Brand Identity Specialist with 3+ years of hands-on experience delivering visual solutions across branding, social media content, and digital design. Holding a Bachelor\'s degree in Information Engineering, I bring a rare combination of technical precision and creative execution, enhanced by my professional use of AI tools and prompt engineering workflows that accelerate output without compromising quality.',
+      'My toolkit includes the full Adobe Creative Suite (Photoshop, Illustrator, InDesign, Premiere Pro), HTML/CSS/JavaScript, and industry-leading AI design platforms. I have successfully developed brand identities, social media campaigns, and marketing collateral for clients across multiple industries.',
+      'Beyond design, I have demonstrated leadership experience as a Supervisor managing a team of 6. I understand deadlines, client expectations, and operational pressure.',
+      'I am immediately available, based in Dubai with a valid UAE residence visa, and highly motivated to contribute to a team where design drives real business results.',
     ],
-    signatureRole: 'Graphic Designer & Full-Stack Builder',
+    signatureRole: 'Graphic Designer · Brand Specialist · Front-End Developer',
     servicesEyebrow: '02 / Services',
     servicesTitle: 'Services & Expertise',
     skillsEyebrow: '03 / Skills',
@@ -135,7 +138,7 @@ const ui = {
     experienceTitle: 'Professional Experience',
     workEyebrow: '05 / Work',
     workTitle: 'Selected Work',
-    adminNote: 'Managed from the private admin dashboard',
+    adminNote: '',
     educationEyebrow: '06 / Education',
     educationTitle: 'Education & Certifications',
     testimonialsEyebrow: '07 / Testimonials',
@@ -186,10 +189,13 @@ const ui = {
     aboutEyebrow: '01 / نبذة',
     aboutTitle: 'مصمم يجمع بين التصميم والكود',
     aboutText: [
-      'أصمم الهويات البصرية وواجهات الويب والمنتجات الرقمية الجاهزة للأتمتة. أجمع بين اللمسة البصرية والهندسة العملية حتى يكون كل جزء من الموقع قابل للإدارة والقياس والتطوير.',
-      'الموقع مرتبط الآن بلوحة إدارة حقيقية، محمية بصلاحية المالك فقط، وفيها عدادات لزيارات الموقع وتحميل السيرة الذاتية.',
+      'إلى مدير التوظيف،',
+      'أنا مصمم جرافيك ومتخصص هوية بصرية مقيم في دبي، أملك أكثر من 3 سنوات من الخبرة العملية في تقديم حلول بصرية في مجالات الهوية البصرية، محتوى السوشال ميديا، والتصميم الرقمي. أحمل درجة البكالوريوس في هندسة المعلومات، وهذا يمنحني مزيجا نادرا من الدقة التقنية والتنفيذ الإبداعي، مدعوما باستخدام احترافي لأدوات الذكاء الاصطناعي وهندسة التلقين لتسريع الإنتاج دون التأثير على الجودة.',
+      'تشمل أدواتي Adobe Creative Suite بالكامل مثل Photoshop وIllustrator وInDesign وPremiere Pro، إضافة إلى HTML وCSS وJavaScript ومنصات التصميم المعتمدة على الذكاء الاصطناعي. أنجزت هويات بصرية وحملات سوشال ميديا ومواد تسويقية لعملاء من قطاعات مختلفة.',
+      'إلى جانب التصميم، لدي خبرة قيادية كمشرف أدرت فريقا من 6 أشخاص، وأفهم ضغط المواعيد النهائية وتوقعات العملاء ومتطلبات التشغيل.',
+      'أنا متاح للعمل مباشرة، مقيم في دبي مع إقامة إماراتية سارية، ومتحمس للمساهمة ضمن فريق يستخدم التصميم لتحقيق نتائج تجارية حقيقية.',
     ],
-    signatureRole: 'مصمم جرافيك ومطور ويب متكامل',
+    signatureRole: 'مصمم جرافيك · متخصص هوية بصرية · مطور واجهات',
     servicesEyebrow: '02 / الخدمات',
     servicesTitle: 'الخدمات والخبرة',
     skillsEyebrow: '03 / المهارات',
@@ -198,7 +204,7 @@ const ui = {
     experienceTitle: 'الخبرة المهنية',
     workEyebrow: '05 / الأعمال',
     workTitle: 'أعمال مختارة',
-    adminNote: 'تتم إدارتها من لوحة الإدارة الخاصة',
+    adminNote: '',
     educationEyebrow: '06 / التعليم',
     educationTitle: 'التعليم والشهادات',
     testimonialsEyebrow: '07 / آراء العملاء',
@@ -278,6 +284,12 @@ const skillLabels: Record<string, Record<Lang, string>> = {
   database: { en: 'Databases', ar: 'قواعد البيانات' },
   design: { en: 'Design', ar: 'التصميم' },
   automation: { en: 'Automation', ar: 'الأتمتة' },
+  branding: { en: 'Branding', ar: 'الهوية البصرية' },
+  production: { en: 'Production', ar: 'الإنتاج والطباعة' },
+  marketing: { en: 'Marketing', ar: 'التسويق' },
+  analytics: { en: 'Testing & SEO', ar: 'الاختبار وSEO' },
+  office: { en: 'Office', ar: 'الأدوات المكتبية' },
+  motion: { en: 'Motion', ar: 'الموشن' },
 };
 
 const statLabels: Record<string, Record<Lang, string>> = {
@@ -290,6 +302,12 @@ const statLabels: Record<string, Record<Lang, string>> = {
 const categoryLabels: Record<string, Record<Lang, string>> = {
   'Full-Stack': { en: 'Full-Stack', ar: 'تطوير متكامل' },
   'AI Systems': { en: 'AI Systems', ar: 'أنظمة ذكاء اصطناعي' },
+  Branding: { en: 'Branding', ar: 'هوية بصرية' },
+  'Social Media': { en: 'Social Media', ar: 'سوشال ميديا' },
+  'Web Design': { en: 'Web Design', ar: 'تصميم ويب' },
+  'Packaging & Print': { en: 'Packaging & Print', ar: 'تغليف وطباعة' },
+  'Motion & Video': { en: 'Motion & Video', ar: 'موشن وفيديو' },
+  'AI Design': { en: 'AI Design', ar: 'تصميم بالذكاء الاصطناعي' },
   Automation: { en: 'Automation', ar: 'أتمتة' },
   Work: { en: 'Work', ar: 'عمل' },
 };
@@ -893,7 +911,7 @@ export default function ReferencePortfolio() {
         <SectionTitle eyebrow={c.skillsEyebrow} title={c.skillsTitle} />
         <div className="sk-grid">
           <div className="sk-bars">
-            {skills.slice(0, 8).map((skill) => (
+            {skills.map((skill) => (
               <div className="sk-item rv" key={skill.id}>
                 <div className="sk-meta">
                   <span className="sk-nm">{text(skill.name, '', language)}</span>
@@ -952,7 +970,7 @@ export default function ReferencePortfolio() {
       <section id="work" className="ref-section rv">
         <div className="work-hdr">
           <SectionTitle eyebrow={c.workEyebrow} title={c.workTitle} />
-          <span className="upload-note">{c.adminNote}</span>
+          {c.adminNote ? <span className="upload-note">{c.adminNote}</span> : null}
         </div>
         {projects.length ? (
           <div className="work-grid">
