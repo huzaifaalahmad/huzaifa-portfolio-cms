@@ -64,7 +64,7 @@ export default function Hero() {
               {language === 'ar' ? 'رؤية الأعمال' : 'View Work'}
             </a>
 
-            <a href={profile.cvUrl} download className="btn btn-secondary magnetic-btn">
+            <a href={profile.cvUrl} download="huzaifa alahmad.pdf" className="btn btn-secondary magnetic-btn">
               <ArrowDownToLine size={18} />
               {language === 'ar' ? 'تنزيل السيرة الذاتية' : 'Download CV'}
             </a>

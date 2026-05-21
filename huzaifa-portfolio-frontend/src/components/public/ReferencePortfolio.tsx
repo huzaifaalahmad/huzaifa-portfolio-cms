@@ -849,7 +849,7 @@ export default function ReferencePortfolio() {
             <a className="btn-g" href="#work">
               {c.viewWork}
             </a>
-            <a className="btn-o" href={cvUrl} download onClick={recordCvDownload}>
+            <a className="btn-o" href={cvUrl} download="huzaifa alahmad.pdf" onClick={recordCvDownload}>
               <Download size={17} />
               {c.downloadCv}
             </a>
