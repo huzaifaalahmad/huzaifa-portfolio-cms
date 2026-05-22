@@ -17,6 +17,7 @@ import {
   Sparkles,
   X,
 } from 'lucide-react';
+import { MoonStars, SunDim, Translate } from '@phosphor-icons/react';
 import { profile } from '@/data/profile';
 import { services } from '@/data/services';
 import { socialLinks } from '@/data/socialLinks';
@@ -38,6 +39,7 @@ import { resolveManagedAssetUrl, siteContentApi, SiteContent } from '@/services/
 import { skillApi } from '@/services/api/skillApi';
 
 type Lang = 'en' | 'ar';
+type Theme = 'dark' | 'light';
 type LocalizedValue = string | { en?: string; ar?: string } | null | undefined;
 
 type ProjectItem = {
@@ -104,7 +106,7 @@ type Envelope<T> = {
 const ui = {
   en: {
     brand: 'Huzaifa',
-    languageButton: 'عربي',
+    languageButton: 'Arabic',
     menuOpen: 'Open navigation',
     menuClose: 'Close navigation',
     nav: [
@@ -171,7 +173,7 @@ const ui = {
   },
   ar: {
     brand: 'حذيفة',
-    languageButton: 'EN',
+    languageButton: 'English',
     menuOpen: 'فتح القائمة',
     menuClose: 'إغلاق القائمة',
     nav: [
@@ -460,6 +462,14 @@ function getStoredLanguage(): Lang {
   }
 }
 
+function getStoredTheme(): Theme {
+  try {
+    return localStorage.getItem('huzaifa-theme') === 'light' ? 'light' : 'dark';
+  } catch {
+    return 'dark';
+  }
+}
+
 function mergeCopy<T extends Record<string, any>>(base: T, override?: Record<string, any>): T {
   if (!override) return base;
 
@@ -472,7 +482,9 @@ function mergeCopy<T extends Record<string, any>>(base: T, override?: Record<str
 
 export default function ReferencePortfolio() {
   const [language, setLanguage] = useState<Lang>(getStoredLanguage);
+  const [theme, setTheme] = useState<Theme>(getStoredTheme);
   const [navOpen, setNavOpen] = useState(false);
+  const [workInView, setWorkInView] = useState(false);
   const [loaderVisible, setLoaderVisible] = useState(true);
   const [loaderOut, setLoaderOut] = useState(false);
   const [projects, setProjects] = useState<ProjectItem[]>(fallbackProjects.map(normalizeProject));
@@ -491,8 +503,11 @@ export default function ReferencePortfolio() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const cursorRingRef = useRef<HTMLDivElement>(null);
+  const workRef = useRef<HTMLElement>(null);
 
   const c = mergeCopy(ui[language], siteContent?.copy?.[language]);
+  const languageToggleLabel = language === 'en' ? 'Arabic' : 'English';
+  const themeToggleLabel = theme === 'dark' ? 'Light' : 'Dark';
   const hasManagedStats = Boolean(siteContent?.stats?.length);
   const visibleStats = (hasManagedStats ? siteContent?.stats || [] : stats)
     .filter((item: any) => item.isVisible)
@@ -524,6 +539,15 @@ export default function ReferencePortfolio() {
       // Ignore storage failures in private browsing.
     }
   }, [language]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('huzaifa-theme', theme);
+      document.documentElement.dataset.theme = theme;
+    } catch {
+      // Ignore storage failures in private browsing.
+    }
+  }, [theme]);
 
   useEffect(() => {
     async function loadSiteContent() {
@@ -733,6 +757,24 @@ export default function ReferencePortfolio() {
     return () => observer.disconnect();
   }, [projects, skills, experiences, education, certifications, language]);
 
+  useEffect(() => {
+    const section = workRef.current;
+    if (!section || !('IntersectionObserver' in window)) {
+      setWorkInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setWorkInView(entry.isIntersecting && entry.intersectionRatio > 0.3);
+      },
+      { threshold: [0, 0.3, 0.58], rootMargin: '-12% 0px -18% 0px' }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [projects.length]);
+
   const skillGroups = useMemo(() => {
     return Object.entries(
       skills.reduce<Record<string, SkillItem[]>>((acc, skill) => {
@@ -746,6 +788,10 @@ export default function ReferencePortfolio() {
   function toggleLanguage() {
     setLanguage((current) => (current === 'en' ? 'ar' : 'en'));
     setNavOpen(false);
+  }
+
+  function toggleTheme() {
+    setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
   }
 
   function closeNav() {
@@ -780,7 +826,7 @@ export default function ReferencePortfolio() {
   }
 
   return (
-    <div className={`ref-site ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'} lang={language}>
+    <div className={`ref-site ${theme} ${language === 'ar' ? 'rtl' : 'ltr'}`} dir={language === 'ar' ? 'rtl' : 'ltr'} lang={language}>
       {loaderVisible ? (
         <div id="ldr" className={`ldr ${loaderOut ? 'out' : ''}`} aria-hidden="true">
           <div className="ldr-mark">
@@ -820,7 +866,12 @@ export default function ReferencePortfolio() {
 
         <div className="nav-actions">
           <button className="lang-toggle" type="button" onClick={toggleLanguage}>
-            {c.languageButton}
+            <Translate size={16} weight="bold" />
+            {languageToggleLabel}
+          </button>
+          <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${themeToggleLabel} mode`}>
+            {theme === 'dark' ? <SunDim size={17} weight="bold" /> : <MoonStars size={17} weight="bold" />}
+            {themeToggleLabel}
           </button>
           <a className="n-cta" href="#contact" onClick={closeNav}>
             {c.navCta}
@@ -888,9 +939,10 @@ export default function ReferencePortfolio() {
 
       <section id="about" className="ref-section about-grid rv">
         <div className="about-img-col">
-          <div className="about-svg">
+          <div className="about-svg about-portrait">
             <span className="about-orbit" aria-hidden="true" />
-            <img src="/assets/images/logo.png" alt="Huzaifa logo" />
+            <span className="portrait-halo" aria-hidden="true" />
+            <img src="/assets/images/huzaifa-portrait.png" alt="Huzaifa Alahmad portrait" />
           </div>
           <div className="about-stats-row">
             {visibleStats.slice(0, 2).map((item) => (
@@ -1006,15 +1058,23 @@ export default function ReferencePortfolio() {
         </div>
       </section>
 
-      <section id="work" className="ref-section rv">
+      <section id="work" className={`ref-section work-section ${workInView ? 'active' : ''}`} ref={workRef}>
         <div className="work-hdr">
           <SectionTitle eyebrow={c.workEyebrow} title={c.workTitle} />
           {c.adminNote ? <span className="upload-note">{c.adminNote}</span> : null}
         </div>
         {projects.length ? (
-          <div className="work-grid">
+          <div className={`work-orbit ${workInView ? 'active' : ''}`}>
+            <div className="work-core" aria-hidden="true">
+              <Palette size={30} />
+              <span>{c.workTitle}</span>
+            </div>
             {projects.slice(0, 6).map((project, index) => (
-              <article className={`wc rv ${index === 0 ? 'big' : ''}`} key={project.id}>
+              <article
+                className={`wc orbit-${index}`}
+                key={project.id}
+                style={{ '--orbit-index': index, '--orbit-total': Math.min(projects.length, 6) } as CSSProperties}
+              >
                 {project.imageUrl ? <img src={project.imageUrl} alt="" /> : null}
                 <div className="wc-in">
                   <span className="wc-ico">
