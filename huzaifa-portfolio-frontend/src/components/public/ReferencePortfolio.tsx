@@ -1066,8 +1066,9 @@ export default function ReferencePortfolio() {
         {projects.length ? (
           <div className={`work-orbit ${workInView ? 'active' : ''}`}>
             <div className="work-core" aria-hidden="true">
-              <Palette size={30} />
-              <span>{c.workTitle}</span>
+              <span className="work-core-ring ring-a" />
+              <span className="work-core-ring ring-b" />
+              <img className="work-core-logo" src="/assets/images/logo.png" alt="" />
             </div>
             {projects.slice(0, 6).map((project, index) => (
               <article
