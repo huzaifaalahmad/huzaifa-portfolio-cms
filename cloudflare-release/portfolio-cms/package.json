@@ -1,0 +1,1 @@
+{"name":"huzaifa-portfolio-cms-worker","private":true,"type":"module","scripts":{"start":"node local-server.mjs","test":"node --test tests/cms.test.mjs"},"engines":{"node":">=24"},"devDependencies":{"wrangler":"4.151.1"}}

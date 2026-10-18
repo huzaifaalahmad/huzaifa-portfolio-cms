@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /cms
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard-preview
+
+Sitemap: https://huzaifa-portfolio.huzaifaalahmad23.workers.dev/sitemap.xml
