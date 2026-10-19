@@ -9,6 +9,11 @@ import '@/styles/personal-refined.css';
 
 type Copy = { en: string; ar: string };
 const asset = '/assets/personal/';
+const technicalSkills = [
+ {title:{en:'Web development',ar:'تطوير الويب'},tools:'HTML · CSS · JavaScript · TypeScript · React',description:{en:'Responsive interfaces and interactive web applications.',ar:'واجهات متجاوبة وتطبيقات ويب تفاعلية.'}},
+ {title:{en:'Software project experience',ar:'خبرة المشاريع البرمجية'},tools:'Node.js · Python · APIs · SQL',description:{en:'Applied through personal projects, with AI-assisted implementation, testing and refinement.',ar:'تطبيق عملي ضمن مشاريعي الشخصية، مع تنفيذ واختبار وتطوير بمساعدة الذكاء الاصطناعي.'}},
+ {title:{en:'AI production systems',ar:'أنظمة الإنتاج بالذكاء الاصطناعي'},tools:'ChatGPT · Gemini · Google Flow · NotebookLM · Seedance',description:{en:'Connected research, prompt development, content generation and production workflows.',ar:'ربط البحث وتطوير التعليمات وتوليد المحتوى بمراحل الإنتاج.'}},
+];
 const capabilities: {title:Copy; description:Copy; tools:string}[] = [
   {title:{en:'Brand & campaign design',ar:'الهوية وتصميم الحملات'},description:{en:'Visual identities, campaign systems, social graphics, catalogues and print-ready layouts.',ar:'هويات بصرية وأنظمة حملات وتصاميم سوشال ميديا وكتالوغات ومواد جاهزة للطباعة.'},tools:'Photoshop · Illustrator · InDesign'},
   {title:{en:'Filming & video production',ar:'التصوير وإنتاج الفيديو'},description:{en:'Product photography, original filming, short-form editing and AI-assisted video production.',ar:'تصوير منتجات ولقطات حقيقية ومونتاج فيديو قصير وإنتاج مشاهد بمساعدة الذكاء الاصطناعي.'},tools:'CapCut · DaVinci Resolve · Premiere Pro'},
@@ -44,7 +49,7 @@ export default function PersonalPortfolio() {
      <div className="pv-actions"><a className="pv-button" href="#work">{say('Explore my work','شاهد أعمالي')} <span aria-hidden="true">↗</span></a><a className="pv-link" href={profile.site.cvUrl} download>{say('Download CV','تحميل السيرة')} ↓</a></div>
      <p className="pv-location">{t(profile.site.location)}</p>
     </div>
-    <div className="pv-portrait-stage"><figure className="pv-portrait"><img src={profile.site.portrait} width="1254" height="1254" alt={say('Portrait of Huzaifa Alahmad','صورة حذيفة الأحمد')} fetchPriority="high"/></figure><div className="pv-seal-space" aria-hidden="true"><div className="pv-seal"><div className="pv-seal-back"/><div className="pv-seal-edge"/><div className="pv-seal-front"><img src={asset+'h-logo.svg'} alt=""/></div></div></div></div>
+    <div className="pv-portrait-stage"><figure className="pv-portrait"><img src={profile.site.portrait===asset+'portrait.png'?asset+'portrait.webp':profile.site.portrait} width="1254" height="1254" alt={say('Portrait of Huzaifa Alahmad','صورة حذيفة الأحمد')} fetchPriority="high" decoding="async"/></figure><div className="pv-seal-space" aria-hidden="true"><div className="pv-seal"><div className="pv-seal-back"/><div className="pv-seal-edge"/><div className="pv-seal-front"><img src={asset+'h-logo.svg'} alt=""/></div></div></div></div>
    </section>
    <section id="work" className="pv-section pv-behance-section">
     <div className="pv-section-head"><div><p className="pv-kicker">{say('Creative work','أعمالي الإبداعية')}</p><h2>{say('Explore on Behance.','استكشف أعمالي على بيهانس.')}</h2></div><p>{say('Brand identities, campaign design and visual storytelling. Visit my portfolio on Behance.','هويات بصرية وتصاميم حملات وسرد بصري. استعرض معرض أعمالي على بيهانس.')}</p></div>
@@ -55,6 +60,10 @@ export default function PersonalPortfolio() {
     <p className="pv-about">{t(profile.site.about)}</p>
     <div className="pv-capabilities">{capabilities.map(c=><article key={c.title.en}><h3>{t(c.title)}</h3><p>{t(c.description)}</p><small dir="ltr">{c.tools}</small></article>)}</div>
     <div className="pv-process"><strong>{say('How I work','كيف أعمل')}</strong><p>{say('Research → Plan → Create → Review → Publish','بحث ← تخطيط ← إنتاج ← مراجعة ← نشر')}</p><span>{say('An integrated workflow, with creative decisions and final review at each stage.','نظام عمل متكامل، مع قرارات إبداعية ومراجعة نهائية بكل مرحلة.')}</span></div>
+   </section>
+   <section id="skills" className="pv-section">
+    <div className="pv-section-head"><div><p className="pv-kicker">{say('Technical skills','المهارات التقنية')}</p><h2>{say('Creative work. Technical depth.','إبداع وخلفية تقنية.')}</h2></div><p>{say('My engineering foundation and the technologies I apply across creative work and personal software projects.','خلفيتي الهندسية والتقنيات التي أستخدمها في عملي الإبداعي ومشاريعي البرمجية الشخصية.')}</p></div>
+    <div className="pv-capabilities">{technicalSkills.map(skill=><article key={skill.title.en}><h3>{t(skill.title)}</h3><p>{t(skill.description)}</p><small dir="ltr">{skill.tools}</small></article>)}</div>
    </section>
    <section id="experience" className="pv-section">
     <div className="pv-section-head"><div><p className="pv-kicker">{say('Experience','الخبرة')}</p><h2>{say('The work behind the work.','خبرة وراء كل عمل.')}</h2></div><p>{say('Design, agency production and remote collaboration since 2023. Expand each role for the full scope.','تصميم وإنتاج ضمن وكالة وتعاون عن بعد منذ 2023. افتح كل خبرة لعرض تفاصيلها.')}</p></div>

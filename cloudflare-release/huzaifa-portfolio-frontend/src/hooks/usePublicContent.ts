@@ -4,7 +4,7 @@ export type PortfolioContent=typeof seed;
 export type ContentEnvelope={content:PortfolioContent;revision:number;updatedAt:string};
 export function usePublicContent(){
  const [content,setContent]=useState<PortfolioContent>(seed);
- const isPreview=window.location.pathname==='/cms-preview';
+ const isPreview=typeof window!=='undefined'&&window.location.pathname==='/cms-preview';
  useEffect(()=>{
   if(isPreview){try{const draft=sessionStorage.getItem('huzaifa-cms-draft');if(draft)setContent(JSON.parse(draft));}catch{}return;}
   const controller=new AbortController();

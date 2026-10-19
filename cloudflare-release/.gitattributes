@@ -1,10 +1,6 @@
+* text=auto
 *.pdf binary
 *.png binary
 *.jpg binary
-*.jpeg binary
+*.webp binary
 *.ttf binary
-*.woff binary
-*.woff2 binary
-*.js text eol=lf
-*.css text eol=lf
-*.html text eol=lf

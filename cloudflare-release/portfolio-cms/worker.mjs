@@ -2,7 +2,7 @@ const encoder=new TextEncoder();
 const token=()=>Array.from(crypto.getRandomValues(new Uint8Array(32)),b=>b.toString(16).padStart(2,'0')).join('');
 const hash=async value=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',encoder.encode(value))),b=>b.toString(16).padStart(2,'0')).join('');
 const cookies=request=>Object.fromEntries((request.headers.get('Cookie')||'').split(';').map(s=>s.trim().split('=')).filter(a=>a.length===2));
-const json=(data,status=200,headers={})=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
+const json=(data,status=200,headers={})=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow',...headers}});
 const fail=(message,status=400)=>{throw Object.assign(new Error(message),{status})};
 const local=env=>env.LOCAL_DEV==='true'&&!!env.LOCAL_OWNER_KEY;
 const cookie=(env,name,value,age)=>`${name}=${value}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${age}${local(env)?'':'; Secure'}`;
@@ -90,8 +90,17 @@ export default {async fetch(request,env){
   if(path==='/api/cms/history'&&method==='GET'){await requireOwner(request,env);const r=await env.DB.prepare('SELECT revision,created_at FROM history ORDER BY revision DESC LIMIT 20').all();return json(r.results)}
   if(path==='/api/cms/restore'&&method==='POST'){await requireOwner(request,env,true);const b=await readJson(request);if(!Number.isSafeInteger(b.restoreRevision))fail('Invalid version');const old=await env.DB.prepare('SELECT json FROM history WHERE revision=?').bind(b.restoreRevision).first();if(!old)fail('Version not found',404);return json(await save(env,JSON.parse(old.json),b.revision))}
   if(path.startsWith('/api/'))return json({error:'Not found'},404);
-  const response=await env.ASSETS.fetch(request);
+  const url=new URL(request.url);
+  const publicOrigin=env.PUBLIC_SITE_ORIGIN==='https://huzaifa-alahmad.pages.dev'?env.PUBLIC_SITE_ORIGIN:null;
+  if(publicOrigin&&path==='/'&&['GET','HEAD'].includes(method))return new Response(null,{status:308,headers:{Location:publicOrigin+'/','Cache-Control':'public, max-age=3600'}});
+  const aliases={'/index.html':'/','/projects':'/#projects','/projects/':'/#projects','/contact':'/#contact','/contact/':'/#contact','/about':'/#about','/experience':'/#experience','/cv':'/assets/personal/Huzaifa-Alahmad-CV.pdf'};
+  if(Object.hasOwn(aliases,path))return new Response(null,{status:308,headers:{Location:(publicOrigin||'')+aliases[path],'Cache-Control':'public, max-age=3600'}});
+  if(path.startsWith('/admin'))return new Response(null,{status:308,headers:{Location:'/cms','X-Robots-Tag':'noindex, nofollow'}});
+  const privatePage=['/cms','/cms/','/cms-preview','/dashboard-preview','/cms-shell','/cms-shell.html'].includes(path);
+  if(privatePage)url.pathname='/cms-shell';
+  const response=await env.ASSETS.fetch(privatePage?new Request(url,request):request);
   const headers=new Headers(response.headers);
+  if(privatePage){headers.set('X-Robots-Tag','noindex, nofollow');headers.set('Cache-Control','no-store')}
   headers.set('X-Content-Type-Options','nosniff');headers.set('Referrer-Policy','strict-origin-when-cross-origin');
   headers.set('Content-Security-Policy',"default-src 'self'; img-src 'self' https: data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'");
   return new Response(response.body,{status:response.status,headers});

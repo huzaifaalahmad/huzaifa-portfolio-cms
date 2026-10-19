@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "include": [
+    "/api/*",
+    "/cms*",
+    "/admin*",
+    "/dashboard-preview"
+  ],
+  "exclude": []
+}

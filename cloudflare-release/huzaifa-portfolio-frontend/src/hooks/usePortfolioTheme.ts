@@ -6,7 +6,7 @@ export function usePortfolioTheme() {
       const saved = localStorage.getItem('huzaifa-theme');
       if (saved === 'light' || saved === 'dark') return saved;
     } catch { /* The toggle also works when browser storage is unavailable. */ }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return typeof window!=='undefined'&&window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
   useEffect(() => {
     try { localStorage.setItem('huzaifa-theme', theme); } catch { /* Session-only preference. */ }

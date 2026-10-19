@@ -1,0 +1,11 @@
+{
+  "name": "huzaifa-alahmad",
+  "pages_build_output_dir": "../pages-assets",
+  "compatibility_date": "2026-10-19",
+  "services": [
+    {
+      "binding": "CONTENT_SERVICE",
+      "service": "huzaifa-portfolio"
+    }
+  ]
+}
