@@ -1,0 +1,8 @@
+.release/
+**/node_modules/
+**/.wrangler/
+**/.local/
+pages-assets/
+**/.env
+**/.env.*
+!**/.env.example

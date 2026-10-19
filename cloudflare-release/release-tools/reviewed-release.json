@@ -1,0 +1,10 @@
+{
+  "reviewedAt": "2026-10-19",
+  "cmsRevision": 4,
+  "contentSha256": "2ac6dc20f9b40fd59a15e018e5bd3be66bcc4f30ad01d7e2bd50eb3f855efaab",
+  "pdfSha256": {
+    "assets/personal/Huzaifa-Alahmad-CV.pdf": "f827d198cde816ff6f187463f13a20feebee5f0c017fb670484de294790ac4f4",
+    "assets/personal/Huzaifa-Alahmad-Master-CV.pdf": "901f1f12d9d588ba74cb40b37232cc16ed11ea97fab5c094c957c323fc15e5ec"
+  },
+  "review": "Existing 19 October application (2 pages) and master CV (3 pages), all pages rendered and visually reviewed. This record adds a consistency gate; it does not alter the PDFs."
+}

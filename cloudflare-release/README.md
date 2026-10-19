@@ -21,6 +21,12 @@ For Pages, assemble `pages-assets/` from the frontend build without `cms-shell.h
 
 ## Validation — 19 October 2026
 
-Twelve automated tests pass, including a real Workers runtime proxy test. All 58 public HTTP assets match the release manifest. Pages canonical, complete HTML, real 404, CMS redirects and content revision 4 were verified. Eight migration route checks pass; anonymous content mutations remain unauthorized. Search Console ownership is verified and the sitemap was submitted. Google initially reported it could not fetch the sitemap; the manual indexing request was refused because the account's daily quota was exceeded. Indexing and search position are not claimed.
+Fifteen automated tests pass, including a real Workers runtime proxy test. All 58 public HTTP assets match the release manifest. Pages canonical, complete HTML, real 404, CMS redirects and content revision 4 were verified. Eight migration route checks pass; anonymous content mutations remain unauthorized. Search Console ownership is verified and the sitemap was submitted. Google initially reported it could not fetch the sitemap. On 19 October, separate live URL tests successfully fetched the homepage and sitemap; one valid ProfilePage item was detected. The sitemap was resubmitted once, but its report still showed the earlier fetch error. The manual indexing request was refused because the account's daily quota was exceeded. Indexing and search position are not claimed.
 
 University repositories remain attributed to the team and original repository owner. Social Vision and APEX are explicitly in development. Software skills are framed as project-based, AI-assisted experience, with no invented employment roles, ratings or durations.
+
+## Content consistency and evidence
+
+See [release-tools/README.md](release-tools/README.md) for the pre-build content/PDF consistency gate, live CMS comparison and isolated review-candidate preparation. These tools do not deploy, regenerate a PDF or change employment accounts automatically. The current release was verified against live CMS revision 4.
+
+[Selected project case studies](release-tools/PROJECT_CASE_STUDIES.md) describe the published portfolio, XO game and confirmed creative production scope, with evidence boundaries and accurate status/attribution for unfinished and university team projects.

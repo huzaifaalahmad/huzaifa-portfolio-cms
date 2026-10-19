@@ -11,3 +11,5 @@ Use Node 24, install locked dependencies with `npm ci`, then run `npm run build`
 The sibling portfolio-cms directory contains production Worker/D1 code and a local SQLite development server. Pages exposes the public content endpoint through a service binding; /cms redirects to the established owner CMS origin above. The previous Worker homepage and old Vercel portfolio permanently redirect to Pages. The current public app does not require the old localhost:5000 backend. Development authentication must never be enabled in production.
 
 Secrets remain in Cloudflare. No .env, local database, OAuth secret, CLI login file or dependency directory belongs in a delivery package. Updating website text does not regenerate the separately maintained CV PDFs.
+
+The pre-build release gate compares the canonical frontend data, CMS seed and both reviewed CV PDFs. Run the sibling `release-tools/content-release.mjs check-live` before publishing to catch later owner edits. Candidate preparation and project evidence are documented in `../release-tools/README.md` and `../release-tools/PROJECT_CASE_STUDIES.md`.
