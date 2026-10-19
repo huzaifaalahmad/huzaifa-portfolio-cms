@@ -1,0 +1,1 @@
+Professional contact details, portraits, logos and CVs are published with owner permission. Original certificate documents and Google ownership verification values are intentionally excluded from this public repository. They are retained in the owner archive. Certificate links remain in the portfolio data.

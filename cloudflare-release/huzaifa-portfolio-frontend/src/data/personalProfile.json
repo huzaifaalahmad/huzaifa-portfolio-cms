@@ -1,0 +1,538 @@
+{
+  "jobs": [
+    {
+      "company": "Green Signal",
+      "role": {
+        "en": "Creative Marketing Specialist",
+        "ar": "متخصص تسويق إبداعي"
+      },
+      "dates": {
+        "en": "22 June 2026 – Present",
+        "ar": "22 يونيو 2026 – الآن"
+      },
+      "location": {
+        "en": "Full-time, on-site · UAE",
+        "ar": "دوام كامل من مقر الشركة · الإمارات"
+      },
+      "bullets": [
+        {
+          "en": "Plan and execute monthly content calendars with a planned cadence of approximately 15 short-form videos and 15 carousels, alongside promotional campaigns.",
+          "ar": "تخطيط وتنفيذ تقويم محتوى شهري يستهدف نحو 15 فيديو قصيراً و15 كاروسيل، إلى جانب الحملات الترويجية."
+        },
+        {
+          "en": "Manage daily publishing across Meta, TikTok and Snapchat, adapting assets and formats to each channel.",
+          "ar": "إدارة النشر اليومي على ميتا وتيكتوك وسناب شات وتكييف المواد لكل منصة."
+        },
+        {
+          "en": "Develop visual concepts and produce campaign graphics, product photography, catalogues and website visuals.",
+          "ar": "تطوير الأفكار البصرية وتصميم الحملات وتصوير المنتجات والكتالوغات وعناصر الموقع."
+        },
+        {
+          "en": "Film and edit original footage; direct AI-generated scenes and combine them with editing for finished marketing videos.",
+          "ar": "تصوير ومونتاج لقطات حقيقية وتوجيه مشاهد مولّدة بالذكاء الاصطناعي لإنتاج فيديوهات تسويقية متكاملة."
+        },
+        {
+          "en": "Build an integrated production workflow using ChatGPT, Gemini, Google Flow, NotebookLM and other generation tools alongside Adobe and video software.",
+          "ar": "بناء نظام إنتاج يربط ChatGPT وGemini وGoogle Flow وNotebookLM وأدوات التوليد ببرامج التصميم والمونتاج."
+        },
+        {
+          "en": "Create advertising campaigns and contribute to audience selection and budget discussions.",
+          "ar": "إنشاء الحملات الإعلانية والمشاركة في تحديد الجمهور ومناقشة الميزانية."
+        },
+        {
+          "en": "Coordinate branding quotations, external suppliers and model sourcing for planned shoots.",
+          "ar": "تنسيق عروض البراندينغ والمورّدين والبحث عن موديلات لجلسات التصوير."
+        },
+        {
+          "en": "Manage a team with formal responsibility for employee performance evaluation.",
+          "ar": "إدارة فريق بصلاحية رسمية لتقييم أداء الموظفين."
+        }
+      ]
+    },
+    {
+      "company": "Great Maters",
+      "role": {
+        "en": "Freelance Graphic Designer",
+        "ar": "مصمم غرافيك مستقل"
+      },
+      "dates": {
+        "en": "July 2025 – Present",
+        "ar": "يوليو 2025 – الآن"
+      },
+      "location": {
+        "en": "Remote · Germany",
+        "ar": "عن بعد · ألمانيا"
+      },
+      "bullets": [
+        {
+          "en": "Design strategic social media content aligned with brand positioning and marketing objectives.",
+          "ar": "تصميم محتوى سوشال ميديا مرتبط بتموضع العلامة وأهداف التسويق."
+        },
+        {
+          "en": "Develop advertising creatives for conversion-focused campaigns.",
+          "ar": "تطوير مواد إعلانية للحملات الموجّهة للتحويل."
+        },
+        {
+          "en": "Maintain a consistent visual identity across digital channels and campaign assets.",
+          "ar": "الحفاظ على اتساق الهوية البصرية بين القنوات والمواد."
+        },
+        {
+          "en": "Collaborate remotely with marketing teams to deliver campaign-ready materials within agreed timelines.",
+          "ar": "التعاون عن بعد مع فرق التسويق لتسليم مواد جاهزة للحملات ضمن المواعيد."
+        },
+        {
+          "en": "Adapt layouts for Instagram, YouTube and digital promotional channels.",
+          "ar": "تكييف التصاميم لإنستغرام ويوتيوب والقنوات الترويجية الرقمية."
+        },
+        {
+          "en": "Use AI-assisted design workflows to support creative iteration and production.",
+          "ar": "استخدام أنظمة تصميم بمساعدة AI لتطوير الأفكار وتنفيذها."
+        }
+      ]
+    },
+    {
+      "company": "Illustrate Marketing",
+      "role": {
+        "en": "Graphic Designer",
+        "ar": "مصمم غرافيك"
+      },
+      "dates": {
+        "en": "June 2024 – January 2025",
+        "ar": "يونيو 2024 – يناير 2025"
+      },
+      "location": {
+        "en": "Dubai · On-site",
+        "ar": "دبي · حضوري"
+      },
+      "bullets": [
+        {
+          "en": "Designed social media campaign content for clients across multiple UAE industries.",
+          "ar": "تصميم محتوى حملات سوشال ميديا لقطاعات متعددة في الإمارات."
+        },
+        {
+          "en": "Produced digital advertising creatives, branding assets and print-ready materials.",
+          "ar": "إنتاج إعلانات رقمية وعناصر هوية ومواد جاهزة للطباعة."
+        },
+        {
+          "en": "Developed structured layouts using typography, colour palettes and visual hierarchy.",
+          "ar": "تطوير تخطيطات واضحة تعتمد الخطوط والألوان والتسلسل البصري."
+        },
+        {
+          "en": "Prepared client-ready campaign presentations to agency standards and delivery timelines.",
+          "ar": "إعداد عروض حملات جاهزة للعملاء وفق معايير الوكالة والمواعيد."
+        },
+        {
+          "en": "Adapted creative assets to the specifications of different social and advertising platforms.",
+          "ar": "تكييف المواد مع مواصفات منصات التواصل والإعلان."
+        }
+      ]
+    },
+    {
+      "company": "Encyclopedia — Engineering & Business Management Consultancy",
+      "role": {
+        "en": "Graphic Designer & Social Media Manager",
+        "ar": "مصمم غرافيك ومسؤول سوشال ميديا"
+      },
+      "dates": {
+        "en": "October 2023 – August 2024",
+        "ar": "أكتوبر 2023 – أغسطس 2024"
+      },
+      "location": {
+        "en": "Freelance · Remote · Norway",
+        "ar": "مستقل · عن بعد · النرويج"
+      },
+      "bullets": [
+        {
+          "en": "Developed YouTube channel branding, including thumbnails, banners and visual content systems.",
+          "ar": "تطوير الهوية البصرية لقنوات يوتيوب: صور مصغّرة وبانرات ونظام محتوى بصري."
+        },
+        {
+          "en": "Created advertising assets supporting audience-growth and content-visibility strategies.",
+          "ar": "تصميم مواد إعلانية لدعم خطط نمو الجمهور وظهور المحتوى."
+        },
+        {
+          "en": "Maintained visual consistency across channel branding and multimedia publishing.",
+          "ar": "الحفاظ على اتساق الهوية ضمن النشر متعدد الوسائط."
+        },
+        {
+          "en": "Prepared layouts for motion graphics adaptation and video branding.",
+          "ar": "تجهيز تخطيطات قابلة للتحويل إلى موشن غرافيك وهوية للفيديو."
+        },
+        {
+          "en": "Applied platform-specific visual storytelling and content positioning.",
+          "ar": "استخدام سرد بصري وتموضع محتوى مناسب لكل منصة."
+        }
+      ]
+    },
+    {
+      "company": "RisingStation",
+      "role": {
+        "en": "Freelance Graphic Designer",
+        "ar": "مصمم غرافيك مستقل"
+      },
+      "dates": {
+        "en": "January 2023 – October 2023",
+        "ar": "يناير 2023 – أكتوبر 2023"
+      },
+      "location": {
+        "en": "Remote · Saudi Arabia",
+        "ar": "عن بعد · السعودية"
+      },
+      "bullets": [
+        {
+          "en": "Produced social media designs aligned with brand communication and campaign goals.",
+          "ar": "تصميم محتوى سوشال ميديا يتوافق مع رسالة العلامة وأهداف الحملات."
+        },
+        {
+          "en": "Developed visual identity components for digital marketing campaigns.",
+          "ar": "تطوير عناصر هوية بصرية للحملات الرقمية."
+        },
+        {
+          "en": "Created promotional materials for online advertising and brand-awareness activity.",
+          "ar": "إنتاج مواد ترويجية للإعلان الرقمي والتعريف بالعلامة."
+        },
+        {
+          "en": "Prepared print-ready marketing collateral and structured layouts.",
+          "ar": "تجهيز مطبوعات تسويقية وتخطيطات جاهزة للطباعة."
+        },
+        {
+          "en": "Delivered creative work against organised production timelines.",
+          "ar": "تنفيذ العمل وفق جداول إنتاج منظّمة."
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Personal Portfolio CMS",
+      "status": {
+        "en": "Live website",
+        "ar": "موقع منشور"
+      },
+      "desc": {
+        "en": "A bilingual personal portfolio presenting my creative practice, professional experience and digital projects, with an owner content editor and version history.",
+        "ar": "موقع شخصي باللغتين يعرض مجالات عملي وخبراتي المهنية ومشاريعي الرقمية، مع لوحة إدارة خاصة لحفظ المحتوى واستعادة نسخه السابقة."
+      },
+      "url": "https://github.com/huzaifaalahmad/huzaifa-portfolio-cms",
+      "logo": "/assets/personal/h-logo.svg",
+      "repositoryUrl": ""
+    },
+    {
+      "name": "Rare Oud",
+      "status": {
+        "en": "Personal web project",
+        "ar": "مشروع ويب شخصي"
+      },
+      "desc": {
+        "en": "Personal storefront and backend project focused on products, orders and administration.",
+        "ar": "مشروع متجر إلكتروني وخدمات خلفية للمنتجات والطلبات والإدارة."
+      },
+      "url": "https://github.com/huzaifaalahmad/rare-oud",
+      "logo": "/assets/personal/rare-oud-logo.png",
+      "repositoryUrl": ""
+    },
+    {
+      "name": "APEX Cognition Platform",
+      "status": {
+        "en": "In development",
+        "ar": "قيد التطوير"
+      },
+      "desc": {
+        "en": "Developing an AI-assisted personal platform for market analysis and simulated trading, with Python services and a TypeScript/React terminal.",
+        "ar": "تطوير منصة شخصية بمساعدة الذكاء الاصطناعي لتحليل الأسواق والتداول التجريبي، بخدمات Python وواجهة TypeScript/React."
+      },
+      "url": null,
+      "logo": "",
+      "repositoryUrl": ""
+    },
+    {
+      "name": "Social Vision",
+      "status": {
+        "en": "Venture & website in development",
+        "ar": "مشروع وموقع قيد التأسيس"
+      },
+      "desc": {
+        "en": "Building a venture for branding, marketing and AI services, including its visual identity, website and presentation materials.",
+        "ar": "تأسيس مشروع لخدمات البراندينغ والتسويق والذكاء الاصطناعي، والعمل على هويته وموقعه ومواد عرضه."
+      },
+      "url": null,
+      "logo": "/assets/personal/social-vision-logo.png",
+      "repositoryUrl": ""
+    },
+    {
+      "name": "XO 3D Arena",
+      "status": {
+        "en": "Personal browser game",
+        "ar": "لعبة متصفح شخصية"
+      },
+      "desc": {
+        "en": "A 3D tic-tac-toe game with two-player mode, three computer difficulty levels and Arabic / English support. Play the improved version.",
+        "ar": "لعبة XO بعمق ثلاثي الأبعاد، للاعبين أو ضد الكمبيوتر بثلاثة مستويات، مع دعم العربية والإنكليزية. جرّب النسخة المطوّرة."
+      },
+      "url": "/projects/xo/index.html",
+      "logo": "/assets/personal/xo-logo.png",
+      "repositoryUrl": "https://github.com/huzaifaalahmad/xo-3d-arena"
+    },
+    {
+      "name": "Engineering Encyclopedia",
+      "status": {
+        "en": "University team project",
+        "ar": "مشروع جامعي ضمن فريق"
+      },
+      "desc": {
+        "en": "University team project focused on engineering learning, courses, lessons and educational materials. Contributed alongside teammates.",
+        "ar": "مشروع جامعي ضمن فريق للتعلّم الهندسي والدورات والدروس والمواد التعليمية، شاركت في تنفيذه مع زملائي."
+      },
+      "url": "https://github.com/RamiElawi/Engineering-Encyclopedia",
+      "logo": "",
+      "repositoryUrl": ""
+    },
+    {
+      "name": "Modern Electronic School",
+      "status": {
+        "en": "University team project",
+        "ar": "مشروع جامعي ضمن فريق"
+      },
+      "desc": {
+        "en": "University team project for electronic-school management, including classes, lessons, attendance, grades and schedules.",
+        "ar": "مشروع جامعي ضمن فريق لإدارة مدرسة إلكترونية، يشمل الصفوف والدروس والحضور والعلامات والجداول."
+      },
+      "url": "https://github.com/RamiElawi/school",
+      "logo": "",
+      "repositoryUrl": ""
+    }
+  ],
+  "certificates": [
+    {
+      "title": "شهادة شكر وتقدير — البورد الألماني للتدريب والاستشارات",
+      "url": "https://drive.google.com/file/d/1HnB3pDiKJqgpv-qv_gbIOGwtRN5rv2Pb/view?usp=drivesdk",
+      "kind": {
+        "en": "Appreciation",
+        "ar": "شكر وتقدير"
+      }
+    },
+    {
+      "title": "One Million Prompters — certificate of completion",
+      "url": "https://drive.google.com/file/d/1B4RKKLrcNEBS4_cPtd9n9FQIaJYDq5R0/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Adobe Package (Photoshop, Illustrator)",
+      "url": "https://drive.google.com/file/d/1DYPj3MwpPmc_zoqdVoaB1DSFQAHZF0-U/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Web Design — attendance certificate, 60 hours",
+      "url": "https://drive.google.com/file/d/12js9JkP43fd6kWiL8ewTJ0s_iA0OAcKL/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Claude with Amazon Bedrock",
+      "url": "https://drive.google.com/file/d/1TVpEOHBkcRkQSsHvnGF36uK0-R4K3V6n/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Claude with Google Vertex AI",
+      "url": "https://drive.google.com/file/d/1TCVvn1vvxDIAdANK0sID_bWbO47fmn51/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Teaching the AI Fluency Framework",
+      "url": "https://drive.google.com/file/d/1iIqbw6VPK5jlQQEv83ZRTvPqbBsbXOQM/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "AI Fluency for nonprofits",
+      "url": "https://drive.google.com/file/d/1d2e83zy7bpW54wqCC4Ib4KcC8HXblXXM/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Introduction to agent skills",
+      "url": "https://drive.google.com/file/d/1lhxXpOCCVcEBWDTCho5MAtwQlgIhoQlc/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Introduction to subagents",
+      "url": "https://drive.google.com/file/d/16tcStzH9eQdJzUzn19zGXqndUmgFogiL/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "AI Fluency: AI Capabilities & Limitations",
+      "url": "https://drive.google.com/file/d/1voAiWJ0glFc7be8G5bszWDhYi2q233R6/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Model Context Protocol: Advanced Topics",
+      "url": "https://drive.google.com/file/d/1CsrhHSfZGpzETG1HEpKW_M5d7d0GdeR4/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "AI Fluency for students",
+      "url": "https://drive.google.com/file/d/15K9TZmjkwGJRNUs693dp4gzwQOxmZJ68/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "AI Fluency for educators",
+      "url": "https://drive.google.com/file/d/1wbaQkrm6RFIrU46MHDhZ6DWc82b3UWl8/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Introduction to Model Context Protocol",
+      "url": "https://drive.google.com/file/d/1wTREvZh_OX1wguuE3lQ30raXHrDUXqwx/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Claude with the Anthropic API",
+      "url": "https://drive.google.com/file/d/1Z1tN_7utWEMfsO4unTV8qD-_QniEWx_k/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "AI Fluency: Framework & Foundations",
+      "url": "https://drive.google.com/file/d/17pDTxJg7eg2xE6a7vfQ2IXjQkXbfkHnp/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Claude Code in Action",
+      "url": "https://drive.google.com/file/d/1DWdcRn8j10pAo9eBY2LV35aBCnkmMfhc/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Introduction to Claude Cowork",
+      "url": "https://drive.google.com/file/d/1yZRZXk9iTSDRMS3xe26oE-65XcbqSd_B/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Claude Code 101",
+      "url": "https://drive.google.com/file/d/1VLWtL667fiRNQ306s4M7iQnVI3g8hN_V/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Claude 101",
+      "url": "https://drive.google.com/file/d/1Mf2DP09oX7dhVBI3qTgq6St_ZsTy8WV_/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Generative AI Content Creation",
+      "url": "https://drive.google.com/file/d/1gwsby_DVF_MhFf3rGr5_x23LvjQZJaNr/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Design Fundamentals",
+      "url": "https://drive.google.com/file/d/1uc32TN_cmKcqJ63XMyC-SYVOCawnajHP/view?usp=drivesdk",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    },
+    {
+      "title": "Small Business Management",
+      "url": "https://drive.google.com/file/d/1jzKhEXDgBpzARlC8N20idPokSigD7Mhp/view",
+      "kind": {
+        "en": "Training",
+        "ar": "تدريب"
+      }
+    }
+  ],
+  "contact": {
+    "email": "huzaifaalahmad23@gmail.com",
+    "phone": "+971563951817",
+    "phoneDisplay": "+971 56 395 1817"
+  },
+  "site": {
+    "name": {
+      "en": "Huzaifa Alahmad",
+      "ar": "حذيفة الأحمد"
+    },
+    "role": {
+      "en": "Creative Marketing Specialist",
+      "ar": "متخصص في التسويق الإبداعي"
+    },
+    "intro": {
+      "en": "I connect visual storytelling, marketing and AI workflows with a background in Information Engineering.",
+      "ar": "أجمع السرد البصري والتسويق وأنظمة عمل الذكاء الاصطناعي مع خلفيتي في هندسة المعلوماتية."
+    },
+    "about": {
+      "en": "I’m an Information Engineering graduate from the University of Aleppo. At Green Signal, I manage a team with formal responsibility for performance evaluation, plan and produce marketing content, manage social publishing and contribute to advertising decisions. Alongside freelance design, I develop personal software projects and am building Social Vision.",
+      "ar": "أنا خريج هندسة معلوماتية من جامعة حلب. في Green Signal أدير فريقاً بصلاحية رسمية لتقييم الأداء، وأخطّط وأنتج المحتوى التسويقي وأدير النشر وأشارك في قرارات الإعلان. إلى جانب التصميم المستقل، أطوّر مشاريع برمجية شخصية وأعمل على تأسيس Social Vision."
+    },
+    "location": {
+      "en": "Based in Dubai, UAE · University of Aleppo, 2024",
+      "ar": "مقيم في دبي، الإمارات · جامعة حلب، 2024"
+    },
+    "education": {
+      "en": "Information Engineering · University of Aleppo, Syria · September 2019–November 2024",
+      "ar": "هندسة معلوماتية · جامعة حلب، سوريا · سبتمبر 2019–نوفمبر 2024"
+    },
+    "portrait": "/assets/personal/portrait.png",
+    "cvUrl": "/assets/personal/Huzaifa-Alahmad-CV.pdf",
+    "defaultTheme": "light",
+    "behance": "https://www.behance.net/huzaifaalahmad23",
+    "instagram": "https://www.instagram.com/huziafa.alahmad/",
+    "linkedin": "https://www.linkedin.com/in/huzaifa-alahmad/",
+    "github": "https://github.com/huzaifaalahmad",
+    "masterCvUrl": "/assets/personal/Huzaifa-Alahmad-Master-CV.pdf"
+  }
+}

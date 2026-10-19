@@ -1,0 +1,36 @@
+{
+  "name": "huzaifa-portfolio",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-18",
+  "assets": {
+    "directory": "../published-assets",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": [
+      "/",
+      "/api/*",
+      "/cms*",
+      "/admin*",
+      "/dashboard-preview",
+      "/projects",
+      "/projects/",
+      "/contact",
+      "/contact/",
+      "/about",
+      "/experience",
+      "/cv",
+      "/index.html"
+    ]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "huzaifa-portfolio-content",
+      "database_id": "b86d35bc-b0fd-4d2a-bc76-f0aaace86aac"
+    }
+  ],
+  "vars": {
+    "OWNER_GITHUB_ID": "243386131",
+    "PUBLIC_SITE_ORIGIN": "https://huzaifa-alahmad.pages.dev"
+  }
+}

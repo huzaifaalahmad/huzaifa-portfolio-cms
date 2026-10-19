@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>لعبة XO 3D</title>
+  <meta name="description" content="XO 3D Arena by Huzaifa Alahmad. Arabic and English tic-tac-toe with a 3D board, local scores and three computer difficulty levels.">
+  <link rel="icon" href="assets/xo-logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="fx-grid" aria-hidden="true"></div>
+  <div id="fx-layer" class="fx-layer" aria-hidden="true"></div>
+
+  <section id="splash" class="splash show" aria-labelledby="splash-title" role="dialog" aria-modal="true">
+    <div class="splash-scene" aria-hidden="true">
+      <img class="game-logo" src="assets/xo-logo.png" alt="">
+    </div>
+    <div class="splash-content">
+      <p id="splash-kicker" class="kicker">تحدي سريع</p>
+      <h1 id="splash-title">لعبة XO 3D</h1>
+      <p id="splash-sub">لوحة ثلاثية الأبعاد، حركات قوية، وخصم ذكي جاهز للتحدي.</p>
+      <div class="splash-actions">
+        <button id="splash-start" class="primary-action" type="button">ابدأ اللعب</button>
+        
+      </div>
+    </div>
+  </section>
+
+  <main class="app-shell">
+    <header class="top-bar" aria-label="إعدادات اللعبة">
+      <div class="control-cluster">
+        <button id="lang-toggle" class="icon-button" type="button" title="العربية / English">AR</button>
+        <button id="theme-toggle" class="icon-button" type="button" title="تبديل الثيم">☾</button>
+        <label class="select-wrap" for="mode-select">
+          <span id="mode-label">الوضع</span>
+          <select id="mode-select" aria-label="وضع اللعب">
+            <option value="pve" selected>ضد الذكاء</option>
+            <option value="pvp">لاعبان</option>
+          </select>
+        </label>
+        <label class="select-wrap" for="difficulty">
+          <span id="difficulty-label">الصعوبة</span>
+          <select id="difficulty" aria-label="مستوى الصعوبة">
+            <option value="easy">سهل</option>
+            <option value="medium" selected>متوسط</option>
+            <option value="hard">صعب</option>
+          </select>
+        </label>
+      </div>
+      <div class="control-cluster profile-cluster">
+        <div id="user-info" class="user-info" aria-live="polite"></div>
+        <a id="back-home" class="ghost-action compact home-link" href="/">العودة للموقع</a>
+        <button id="restart" class="primary-action compact" type="button">إعادة</button>
+      </div>
+    </header>
+
+    <section class="game-layout">
+      <aside class="status-panel">
+        <img class="brand-mark" src="assets/xo-logo.png" alt="XO 3D Arena logo">
+        <p id="panel-kicker" class="kicker">XO Arena</p>
+        <h2 id="game-title">لعبة XO 3D</h2>
+        <p id="status-text" class="status-text" role="status" aria-live="polite" aria-atomic="true">دور اللاعب X</p>
+        <div class="turn-track" aria-label="الدور الحالي">
+          <div id="badge-x" class="turn-badge active">X</div>
+          <div id="badge-o" class="turn-badge">O</div>
+        </div>
+      </aside>
+
+      <section class="stage" aria-label="لوحة لعبة XO">
+        <div id="board-shell" class="board-shell">
+          <div class="board-backplate" aria-hidden="true"></div>
+          <div class="board" id="board">
+            <button id="cell-0" class="cell" type="button" data-index="0" aria-label="الخانة 1"><span class="cell-glow"></span><span class="mark-layer"></span></button>
+            <button id="cell-1" class="cell" type="button" data-index="1" aria-label="الخانة 2"><span class="cell-glow"></span><span class="mark-layer"></span></button>
+            <button id="cell-2" class="cell" type="button" data-index="2" aria-label="الخانة 3"><span class="cell-glow"></span><span class="mark-layer"></span></button>
+            <button id="cell-3" class="cell" type="button" data-index="3" aria-label="الخانة 4"><span class="cell-glow"></span><span class="mark-layer"></span></button>
+            <button id="cell-4" class="cell" type="button" data-index="4" aria-label="الخانة 5"><span class="cell-glow"></span><span class="mark-layer"></span></button>
+            <button id="cell-5" class="cell" type="button" data-index="5" aria-label="الخانة 6"><span class="cell-glow"></span><span class="mark-layer"></span></button>
+            <button id="cell-6" class="cell" type="button" data-index="6" aria-label="الخانة 7"><span class="cell-glow"></span><span class="mark-layer"></span></button>
+            <button id="cell-7" class="cell" type="button" data-index="7" aria-label="الخانة 8"><span class="cell-glow"></span><span class="mark-layer"></span></button>
+            <button id="cell-8" class="cell" type="button" data-index="8" aria-label="الخانة 9"><span class="cell-glow"></span><span class="mark-layer"></span></button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="score-panel" aria-label="النتائج">
+        <div class="score-item score-x">
+          <span id="label-x">اللاعب X</span>
+          <strong id="score-x">0</strong>
+        </div>
+        <div class="score-item score-o">
+          <span id="label-o">اللاعب O</span>
+          <strong id="score-o">0</strong>
+        </div>
+        <div class="score-item score-tie">
+          <span id="label-tie">تعادل</span>
+          <strong id="score-tie">0</strong>
+        </div>
+      </aside>
+    </section>
+    <footer class="game-footer"><p id="local-note">النتائج محفوظة على هذا المتصفح.</p><button id="reset-scores" class="ghost-action" type="button">تصفير النتائج</button></footer>
+  </main>
+
+  <div id="game-over" class="overlay" role="dialog" aria-modal="true" aria-labelledby="game-over-msg">
+    <div class="overlay-card">
+      <div id="celebration" class="celebration" aria-hidden="true"></div>
+      <p id="game-over-msg">نتيجة المباراة</p>
+      <button id="overlay-restart" class="primary-action" type="button">جولة جديدة</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
