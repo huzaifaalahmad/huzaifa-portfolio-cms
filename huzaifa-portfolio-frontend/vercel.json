@@ -6,6 +6,11 @@
   "outputDirectory": "legacy-redirect",
   "redirects": [
     {
+      "source": "/",
+      "destination": "https://huzaifa-portfolio.huzaifaalahmad23.workers.dev/",
+      "permanent": true
+    },
+    {
       "source": "/projects",
       "destination": "https://huzaifa-portfolio.huzaifaalahmad23.workers.dev/#projects",
       "permanent": true
