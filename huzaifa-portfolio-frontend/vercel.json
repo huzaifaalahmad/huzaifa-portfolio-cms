@@ -1,8 +1,44 @@
 {
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "echo 'Legacy portfolio retired; deploying permanent redirects only.'",
+  "outputDirectory": "legacy-redirect",
+  "redirects": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/",
+      "destination": "https://huzaifa-alahmad.pages.dev/",
+      "permanent": true
+    },
+    {
+      "source": "/projects",
+      "destination": "https://huzaifa-alahmad.pages.dev/#projects",
+      "permanent": true
+    },
+    {
+      "source": "/projects/:slug",
+      "destination": "https://huzaifa-alahmad.pages.dev/#projects",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "https://huzaifa-alahmad.pages.dev/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://huzaifa-portfolio.huzaifaalahmad23.workers.dev/cms",
+      "permanent": true
+    },
+    {
+      "source": "/assets/cv.pdf",
+      "destination": "https://huzaifa-alahmad.pages.dev/assets/personal/Huzaifa-Alahmad-CV.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://huzaifa-alahmad.pages.dev/:path*",
+      "permanent": true
     }
   ]
 }
