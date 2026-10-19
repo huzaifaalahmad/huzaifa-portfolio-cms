@@ -7,22 +7,22 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "https://huzaifa-portfolio.huzaifaalahmad23.workers.dev/",
+      "destination": "https://huzaifa-alahmad.pages.dev/",
       "permanent": true
     },
     {
       "source": "/projects",
-      "destination": "https://huzaifa-portfolio.huzaifaalahmad23.workers.dev/#projects",
+      "destination": "https://huzaifa-alahmad.pages.dev/#projects",
       "permanent": true
     },
     {
       "source": "/projects/:slug",
-      "destination": "https://huzaifa-portfolio.huzaifaalahmad23.workers.dev/#projects",
+      "destination": "https://huzaifa-alahmad.pages.dev/#projects",
       "permanent": true
     },
     {
       "source": "/contact",
-      "destination": "https://huzaifa-portfolio.huzaifaalahmad23.workers.dev/#contact",
+      "destination": "https://huzaifa-alahmad.pages.dev/#contact",
       "permanent": true
     },
     {
@@ -32,12 +32,12 @@
     },
     {
       "source": "/assets/cv.pdf",
-      "destination": "https://huzaifa-portfolio.huzaifaalahmad23.workers.dev/assets/personal/Huzaifa-Alahmad-CV.pdf",
+      "destination": "https://huzaifa-alahmad.pages.dev/assets/personal/Huzaifa-Alahmad-CV.pdf",
       "permanent": true
     },
     {
       "source": "/:path*",
-      "destination": "https://huzaifa-portfolio.huzaifaalahmad23.workers.dev/:path*",
+      "destination": "https://huzaifa-alahmad.pages.dev/:path*",
       "permanent": true
     }
   ]
